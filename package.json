@@ -23,5 +23,7 @@
     "url": "https://github.com/damienomurchu/data-miner/issues"
   },
   "homepage": "https://github.com/damienomurchu/data-miner#readme",
-  "dependencies": {}
+  "dependencies": {
+    "yargs": "^7.0.1"
+  }
 }
