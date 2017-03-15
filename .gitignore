@@ -1,0 +1,5 @@
+# exclude node_modules folder
+node_modules
+
+# exclude system-generated .idea files
+.idea

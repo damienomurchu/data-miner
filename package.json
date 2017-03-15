@@ -1,0 +1,27 @@
+{
+  "name": "data-miner",
+  "version": "0.0.1",
+  "description": "A utility for analysing input data and producing graphable output data",
+  "main": "app.js",
+  "bin": {
+    "data-miner": "./app.js"
+  },
+  "scripts": {
+    "test": "tape tests/**/*.js tests/**.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/damienomurchu/data-miner.git"
+  },
+  "keywords": [
+    "data",
+    "mining"
+  ],
+  "author": "Damien Murphy <damurphy@redhat.com>, Austin Cunningham <aucunning@redhat.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/damienomurchu/data-miner/issues"
+  },
+  "homepage": "https://github.com/damienomurchu/data-miner#readme",
+  "dependencies": {}
+}
