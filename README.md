@@ -12,12 +12,6 @@ clone the data-miner repository by navigating to the location where you want to 
 
 ### Running data-miner ###
 From a terminal, navigate to the folder where data-miner is located, and run data-miner with 
-`node ./app [ -[-]<commandFlag>{=|' '}<commandParameter> ]...`
-For example, if `x` and `y` were command flags, the following terminal code would all be equivalent:
-* `node ./app -x=2 -y=5`
-* `node ./app --x=2 --y=5`
-* `node ./app -x 2 -y 5`
-* `node ./app --x 2 --y 5`
+`node ./dataminer-cli.js` to outline how to use data-miner from the commandline, and the various flags/ options available. The output should be similar to the following:
 
-### Available commands & arguments ###
-<insert all available commands, their flags, and the arguments they accept>
+![cli-screenshot](/public/images/cli-screenshot.png)
