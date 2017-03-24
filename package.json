@@ -1,10 +1,10 @@
 {
   "name": "data-miner",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A utility for analysing input data and producing graphable output data",
   "main": "app.js",
   "bin": {
-    "data-miner": "./app.js"
+    "data-miner": "./dataminer-cli.js"
   },
   "scripts": {
     "test": "tape tests/**/*.js tests/**.js"
@@ -23,5 +23,7 @@
     "url": "https://github.com/damienomurchu/data-miner/issues"
   },
   "homepage": "https://github.com/damienomurchu/data-miner#readme",
-  "dependencies": {}
+  "dependencies": {
+    "yargs": "^7.0.1"
+  }
 }
