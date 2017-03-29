@@ -3,3 +3,6 @@ node_modules
 
 # exclude system-generated .idea files
 .idea
+
+# exclude sample-data files
+sample-data

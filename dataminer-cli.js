@@ -23,7 +23,7 @@ const cli = function() {
         alias: 'output',
         default: 'json',
         choices: ['csv', 'tsv', 'json'],
-        describe: 'specify format of output data',
+        describe: 'specify format of output raincatchDump.json',
         type: 'string'
       })
       .option('s', {
@@ -37,7 +37,7 @@ const cli = function() {
         type: 'string'
       })
       .demandOption(['file'], 'Please provide input file.')
-      .example('$0 -f data.csv -g g-1 -o json -s 01/01/2016 -e 31/12/2016', 'Read in data from the file data.csv, and produce json output data for the graph type g-1, for the date range 01/01/2016 to 31/12/2016')
+      .example('$0 -f raincatchDump.json.csv -g g-1 -o json -s 01/01/2016 -e 31/12/2016', 'Read in raincatchDump.json from the file raincatchDump.json.csv, and produce json output raincatchDump.json for the graph type g-1, for the date range 01/01/2016 to 31/12/2016')
       .demandCommand()
       .help()
       .argv;

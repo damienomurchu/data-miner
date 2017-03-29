@@ -5,6 +5,8 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const hbs = require('handlebars');
+//const sampleData = require("./users.json");
+
 
 const graphController = require('./api-controller/graphs');
 
@@ -55,6 +57,6 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(8000);
-console.log('listening on port: ' + '8000');
+console.log('listening on http://localhost:' + '8000');
 
 module.exports = app;
