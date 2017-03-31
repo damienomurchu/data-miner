@@ -6,3 +6,6 @@ node_modules
 
 # exclude sample-data files
 sample-data
+
+# exclude sonarqube setting files
+.sonar
