@@ -5,15 +5,16 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
-
 const hbs = require('handlebars');
-//const sampleData = require("./users.json");
 
+const Keycloak = require('keycloak-connect');
+const keycloak = new Keycloak({});
 
-
+//const landingPage = require('./views/index.html');
 const graphController = require('./api-controller/graphs');
 
 var app = express();
+app.use(keycloak.middleware());
 
 
 // serves any requests for resources/ images in the url www.x.com/123.jpg from the public directory
@@ -38,7 +39,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/views')));
 
+
+app.get('/login', keycloak.protect(), function(req, res) {
+  res.sendFile(index.html);
+});
 app.use('/graphs', graphController);
 
 // catch 404 and forward to error handler
