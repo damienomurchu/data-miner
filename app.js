@@ -4,17 +4,10 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-
-
 const hbs = require('handlebars');
-//const sampleData = require("./users.json");
-
-
-
 const graphController = require('./api-controller/graphs');
 
 var app = express();
-
 
 // serves any requests for resources/ images in the url www.x.com/123.jpg from the public directory
 app.use(express.static('public'));
@@ -24,8 +17,7 @@ app.use('/static', express.static('public'));
 
 // the path provided to the express.static function is relative to the directory where node is
 // launched from, thus path.join is used to map the absolute path to public
-app.use('/static', express.static(path.join(__dirname, 'public')))
-
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -56,7 +48,8 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  //res.render('error');
+  res.render(err);
 });
 
 app.listen(8000);
