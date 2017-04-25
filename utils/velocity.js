@@ -1,19 +1,21 @@
 const utils = require('../utils/data.js');
 
 // returns a data set to populate a velocity chart
-exports.velocity = function() {
+exports.velocity = function(jiraData) {
+
+  var sprintInfo = utils.getSprintInfo(jiraData);
 
   // get all sprints
-  var sprintNames = utils.getSprintInfo().map(dtls => {
+  var sprintNames = sprintInfo.map(dtls => {
     return dtls.sprintName;
   });
 
   var ticketsbySprint = [];
   sprintNames.forEach(sprintName => {
-    var sprintIssues = utils.issuesInSprint(sprintName);
+    var sprintIssues = utils.issuesInSprint(jiraData, sprintName);
 
     // get sprint dates
-    var sprint = utils.getSprintInfo().filter(dtl => {
+    var sprint = sprintInfo.filter(dtl => {
       return dtl.sprintName === sprintName;
     })[0];
     var sprintStart = sprint.startDate;
@@ -47,4 +49,4 @@ exports.velocity = function() {
 
 }
 
-console.log(this.velocity());
+//console.log(this.velocity());
