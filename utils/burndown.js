@@ -1,14 +1,16 @@
 const utils = require('../utils/data.js');
 
 var sprintName = 'IR300 Umbrella';
+const sampleData = require('../sample-data/rc2.json');
+
 
 // returns an array of values to map the actual burndown of a sprint
-function actualBurndown(sprintName) {
+exports.actualBurndown = function (jiraData, sprintName) {
   // get date range of sprint
-  var sprintDates = utils.getSprintDates(sprintName);
+  var sprintDates = utils.getSprintDates(jiraData, sprintName);
 
   // get all issues in sprint
-  var sprintTickets = utils.issuesInSprint(sprintName);
+  var sprintTickets = utils.issuesInSprint(jiraData, sprintName);
 
   // get dates of resolved issues
   var resolvedInfo = utils.resolvedDates(sprintTickets).filter(iss => {
@@ -41,14 +43,14 @@ function actualBurndown(sprintName) {
 }
 
 // returns a dataset to map the theoretical burndown for a sprint
-function theoreticalBurndownLine(sprintName) {
+exports.theoreticalBurndownLine = function (jiraData, sprintName) {
 
   // get dates of sprint
-  var sprintDates = utils.getSprintDates(sprintName);
+  var sprintDates = utils.getSprintDates(jiraData, sprintName);
   var startDate = sprintDates[0];
 
   // get all issues that belong to sprint
-  var sprintTickets = utils.issuesInSprint(sprintName);
+  var sprintTickets = utils.issuesInSprint(jiraData, sprintName);
 
   // get total storypoints of issues in sprint
   var sprintPoints = sprintTickets.map(ticket => {
@@ -76,8 +78,8 @@ function theoreticalBurndownLine(sprintName) {
   return theoretical;
 }
 
-function issueList(sprintName) {
-  return utils.issuesInSprint(sprintName).filter(iss => {
+exports.issueList = function (jiraData, sprintName) {
+  return utils.issuesInSprint(jiraData, sprintName).filter(iss => {
     return iss['Story Points'];
   }).map(issue => {
     var iss = {};
@@ -87,14 +89,14 @@ function issueList(sprintName) {
   });
 }
 
-exports.burndownReportData = function(sprintName) {
+exports.burndownReportData = function(jiraData, sprintName) {
   var dataSet = {};
   dataSet.report = 'Burndown report';
   dataSet.sprint = sprintName;
-  dataSet.actualBurndown = actualBurndown(sprintName);
-  dataSet.expectedBurndown = theoreticalBurndownLine(sprintName);
-  dataSet.issueList = issueList(sprintName);
+  dataSet.actualBurndown = this.actualBurndown(jiraData, sprintName);
+  dataSet.expectedBurndown = this.theoreticalBurndownLine(jiraData, sprintName);
+  dataSet.issueList = this.issueList(jiraData, sprintName);
   return dataSet;
 }
 
-console.log(this.burndownReportData(sprintName));
+//console.log(this.burndownReportData(sampleData, sprintName));
