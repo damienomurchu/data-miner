@@ -6,7 +6,6 @@ var moment = require('moment');
 
 // takes 2 date strings and returns an array of all the inclusive days
 exports.datesInRange = function(startDate, endDate) {
-  //console.log('start: ' + startDate + '\nend: ' + endDate);
   var dateRange = [];
   var st = moment(startDate.substring(0, 10)).add(12, 'hours'); // hack as date 1 hour off
   var nd = moment(endDate.substring(0, 10)).add(12, 'hours'); // hack as date 1 hour off

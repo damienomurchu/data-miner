@@ -48,5 +48,3 @@ exports.createdResolved = function (jiraData, startDate, endDate) {
   dataset.push(r);
   return dataset;
 };
-
-//console.log(this.createdResolved('2017-03-01', '2017-03-31'));

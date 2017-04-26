@@ -97,5 +97,3 @@ exports.burndownReportData = function(jiraData, sprintName) {
   dataSet.issueList = this.issueList(jiraData, sprintName);
   return dataSet;
 }
-
-//console.log(this.burndownReportData(sampleData, sprintName));

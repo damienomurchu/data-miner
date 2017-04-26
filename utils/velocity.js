@@ -48,5 +48,3 @@ exports.velocity = function(jiraData) {
   });
 
 }
-
-//console.log(this.velocity());
