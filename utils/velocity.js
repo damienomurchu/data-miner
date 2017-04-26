@@ -1,4 +1,4 @@
-const utils = require('../utils/data.js');
+const utils = require('./data.js');
 
 // returns a data set to populate a velocity chart
 exports.velocity = function(jiraData) {

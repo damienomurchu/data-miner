@@ -1,7 +1,6 @@
 'use strict'
 
 const burndown = require('./burndown');
-const sampleData = require('../sample-data/rc2.json');
 
 var sprintName = 'IR300 Umbrella';
 

@@ -1,8 +1,6 @@
 'use strict';
 
-const data = require('./data');
-//const sampleData = require('../sample-data/rc2.json');
-const utils = require('../utils/data.js');
+const utils = require('./data.js');
 
 // accepts a start and end date, and returns a dataset to populate a created-v-resolved chart
 exports.createdResolved = function (jiraData, startDate, endDate) {

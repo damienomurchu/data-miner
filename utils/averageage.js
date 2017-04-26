@@ -1,7 +1,6 @@
 'use strict'
 
 var moment = require('moment');
-const sampleData = require('../sample-data/rc2.json');
 const utils = require('../utils/data.js');
 
 exports.averageAge = function (jiraData, startDate, endDate) {

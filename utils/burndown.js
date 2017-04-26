@@ -1,7 +1,6 @@
 const utils = require('../utils/data.js');
 
 var sprintName = 'IR300 Umbrella';
-const sampleData = require('../sample-data/rc2.json');
 
 
 // returns an array of values to map the actual burndown of a sprint
