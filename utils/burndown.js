@@ -88,7 +88,7 @@ exports.issueList = function (jiraData, sprintName) {
   });
 }
 
-exports.burndownReportData = function(jiraData, sprintName) {
+/*exports.burndownReportData = function(jiraData, sprintName) {
   var dataSet = {};
   dataSet.report = 'Burndown report';
   dataSet.sprint = sprintName;
@@ -96,4 +96,4 @@ exports.burndownReportData = function(jiraData, sprintName) {
   dataSet.expectedBurndown = this.theoreticalBurndownLine(jiraData, sprintName);
   dataSet.issueList = this.issueList(jiraData, sprintName);
   return dataSet;
-}
+}*/
