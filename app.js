@@ -31,7 +31,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// graph api handler routes
 app.use('/graphs', graphController);
+
+// sanity check base route
+app.get('/', function (req, res) {
+  res.send('Welcome - sanity check passed!');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
