@@ -1,17 +1,15 @@
 'use strict';
 
-const data = require('./data');
-const sampleData = require('../sample-data/rc2.json');
-const utils = require('../utils/data.js');
+const utils = require('./data.js');
 
 // accepts a start and end date, and returns a dataset to populate a created-v-resolved chart
-exports.createdResolved = function (startDate, endDate) {
+exports.createdResolved = function (jiraData, startDate, endDate) {
 
   // get date range
   var dateRange = utils.datesInRange(startDate, endDate);
 
   // get all created issues between date range
-  var issuesInRange = sampleData.filter(issue => {
+  var issuesInRange = jiraData.filter(issue => {
     var createdDate = issue.Created.substring(0, 10);
     return (createdDate >= startDate) && (createdDate <= endDate);
   });
@@ -50,5 +48,3 @@ exports.createdResolved = function (startDate, endDate) {
   dataset.push(r);
   return dataset;
 };
-
-console.log(this.createdResolved('2017-03-01', '2017-03-31'));

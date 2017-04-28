@@ -3,7 +3,6 @@
 'use strict'
 
 var moment = require('moment');
-const sampleData = require('../sample-data/rc2.json');
 
 // takes 2 date strings and returns an array of all the inclusive days
 exports.datesInRange = function(startDate, endDate) {
@@ -31,9 +30,9 @@ exports.workingDaysInRange = function (start, end) {
 }
 
 // helper to return array of all the full sprint value strings in a JIRA file
-function getSprintDetails() {
+function getSprintDetails(jiraData) {
   // TODO get sprint details from most recently pulled file
-  var unf = sampleData.map(issue => {
+  var unf = jiraData.map(issue => {
     return issue.Sprint;
   }).filter(sprint => {
     return (sprint.length > 0);
@@ -44,8 +43,8 @@ function getSprintDetails() {
 };
 
 // returns name, start and end date of sprint
-exports.getSprintInfo = function() {
-  var details = getSprintDetails();
+exports.getSprintInfo = function(jiraData) {
+  var details = getSprintDetails(jiraData);
   return details.map(detail => {
     var sprt = {};
     var spl = detail.split(',');
@@ -62,9 +61,9 @@ function sprintName(longSprintString) {
 }
 
 //returns a dataset to map the actual burndown for a sprint
-exports.getSprintDates = function(sprintName) {
+exports.getSprintDates = function(jiraData, sprintName) {
   // get date range of sprint
-  var sprint = this.getSprintInfo().filter(dtl => {
+  var sprint = this.getSprintInfo(jiraData).filter(dtl => {
     return dtl.sprintName === sprintName;
   })[0];
   var startDate = sprint.startDate;
@@ -73,8 +72,8 @@ exports.getSprintDates = function(sprintName) {
 }
 
 // get all tickets in a sprint
-exports.issuesInSprint = function(sprintName) {
-  var sprintTickets = sampleData.filter(issue => {
+exports.issuesInSprint = function(jiraData, sprintName) {
+  var sprintTickets = jiraData.filter(issue => {
     // check there is a sprint value
     if (issue.Sprint === null || issue.Sprint.length < 1)
       return false;
@@ -149,8 +148,8 @@ exports.countItems = function (arr, what) {
 }
 
 // returns pertinent details of a JIRA issue
-exports.issueData = function () {
-  return sampleData.map(issue => {
+exports.issueData = function (jiraData) {
+  return jiraData.map(issue => {
     var iss = {};
     iss.id = issue.id;
     iss.jira = issue.key;

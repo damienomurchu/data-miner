@@ -13,15 +13,8 @@ const averageage = require('../utils/averageage');
 
 
 router.post('/issue', upload.array(), function (req, res) {
-  /*var issue = sampleData.filter(issue => {
-    issue.id === request.body.id;
-  });
-  console.log(issue);*/
-  //console.log('request: ' + request);
-  console.log('req: ' + req);
   res.json(req.body);
 });
-
 
 // POST /graph/burndown
 // Analyse the received raincatchDump.json & return a json dataset to feed a sprint burndown chart
