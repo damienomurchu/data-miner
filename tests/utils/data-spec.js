@@ -83,31 +83,8 @@ describe('Utils-Data.js tests', function () {
     expect(issuesInSprint.length).to.equal(12);
   });
 
-  it('resolvedDate returns correct date', function () {
+  it.skip('resolvedDate returns correct date', function () {
 
   });
 
-  it('', function () {
-
-  });
-
-  it('', function () {
-
-  });
-
-  it('', function () {
-
-  });
-
-  it('', function () {
-
-  });
-
-  it('', function () {
-
-  });
-
-  it('', function () {
-
-  });
 });

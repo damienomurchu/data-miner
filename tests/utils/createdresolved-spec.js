@@ -14,6 +14,7 @@ describe('Created-vs-Resolved tests', function () {
 
   const start = fixtures.startDate;
   const end = fixtures.endDate;
+  const datesInWeek = fixtures.datesInWeek;
 
   const sprintName = fixtures.sprintName;
   const sprintStart = fixtures.sprintStart;
@@ -27,41 +28,64 @@ describe('Created-vs-Resolved tests', function () {
     //
   });
 
-  it.skip('should return error object if no jiraData passed in', function () {
+  it('should return error object if no jiraData passed in', function () {
+    var cr = createdresolved.createdResolved(start, end);
+    expect(cr.error).to.exist;
+  });
+
+  it('should return error object if no start date passed in', function () {
+    var cr = createdresolved.createdResolved(testData, end);
+    expect(cr.error).to.exist;
+  });
+
+  it('should return error object if no end date passed in', function () {
+    var cr = createdresolved.createdResolved(testData, start);
+    expect(cr.error).to.exist;
+  });
+
+  it('should handle a date that is passed in as a string', function () {
     var cr = createdresolved.createdResolved(testData, start, end);
+    expect(cr).to.exist;
   });
 
-  it.skip('should return error object if no start date passed in', function () {
+  it('should handle a date that is passed in as a Date object', function () {
+    var cr = createdresolved.createdResolved(testData, new Date(start), new Date(end));
+    expect(cr).to.exist;
+  });
+
+  it('should return an array with two objects', function () {
     var cr = createdresolved.createdResolved(testData, start, end);
-    // TODO
+    expect(cr.length).to.equal(2);
   });
 
-  it.skip('should return error object if no end date passed in', function () {
-    // TODO
+  it('should return an array of objects with the keys of "created" and "resolved"', function () {
+    var cr = createdresolved.createdResolved(testData, start, end);
+    expect(cr[0]).to.contain.any.keys(['created', 'resolved']);
+    expect(cr[1]).to.contain.any.keys(['created', 'resolved']);
   });
 
-  it.skip('should handle a date that is passed in as a string', function () {
-    // TODO
+  it('"created" key in returned object should be an object with a number of key-value pairs equal to the date range', function () {
+    var cr = createdresolved.createdResolved(testData, start, end);
+    expect(Object.keys(cr[0].created).length).to.equal(7);
   });
 
-  it.skip('should handle a date that is passed in as a Date object', function () {
-    // TODO
+  it('"resolved" key in returned object should be an object with a number of key-value pairs equal to the date range', function () {
+    var cr = createdresolved.createdResolved(testData, start, end);
+    expect(Object.keys(cr[1].resolved).length).to.equal(7);
   });
 
-  it.skip('should return an object with keys of "created" and "resolved"', function () {
-    // TODO
-  });
+  it('key-value pairs in "created" and "resolved" object keys should contain values that are numbers', function () {
+    var cr = createdresolved.createdResolved(testData, start, end);
 
-  it.skip('"created" key in returned object should be an object with a number of key-value pairs equal to the date range', function () {
-    // TODO
-  });
+    const createdValues = Object.keys(cr[0].created).map(key => cr[0].created[key]);
+    createdValues.every(value => {
+      expect(typeof value == 'number').to.be.true;
+    });
 
-  it.skip('"resolved" key in returned object should be an object with a number of key-value pairs equal to the date range', function () {
-    // TODO
-  });
-
-  it.skip('key-value pairs in "created" and "resolved" object keys should contain values that are numbers', function () {
-    // TODO
+    const resolvedValues = Object.keys(cr[1].resolved).map(key => cr[1].resolved[key]);
+    resolvedValues.every(value => {
+      expect(typeof value == 'number').to.be.true;
+    });
   });
 
 });
