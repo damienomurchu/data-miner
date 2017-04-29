@@ -10,7 +10,7 @@
     "data-miner": "./dataminer-cli.js"
   },
   "scripts": {
-    "test": "mocha --recursive --reporter spec '**/*spec.js'"
+    "test": "mocha -u tdd --recursive --reporter spec '**/*spec.js'"
   },
   "repository": {
     "type": "git",
