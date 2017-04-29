@@ -27,40 +27,40 @@ describe('Created-vs-Resolved tests', function () {
     //
   });
 
-  it('should return error object if no jiraData passed in', function () {
+  it.skip('should return error object if no jiraData passed in', function () {
     var cr = createdresolved.createdResolved(testData, start, end);
   });
 
-  it('should return error object if no start date passed in', function () {
+  it.skip('should return error object if no start date passed in', function () {
     var cr = createdresolved.createdResolved(testData, start, end);
     // TODO
   });
 
-  it('should return error object if no end date passed in', function () {
+  it.skip('should return error object if no end date passed in', function () {
     // TODO
   });
 
-  it('should handle a date that is passed in as a string', function () {
+  it.skip('should handle a date that is passed in as a string', function () {
     // TODO
   });
 
-  it('should handle a date that is passed in as a Date object', function () {
+  it.skip('should handle a date that is passed in as a Date object', function () {
     // TODO
   });
 
-  it('should return an object with keys of "created" and "resolved"', function () {
+  it.skip('should return an object with keys of "created" and "resolved"', function () {
     // TODO
   });
 
-  it('"created" key in returned object should be an object with a number of key-value pairs equal to the date range', function () {
+  it.skip('"created" key in returned object should be an object with a number of key-value pairs equal to the date range', function () {
     // TODO
   });
 
-  it('"resolved" key in returned object should be an object with a number of key-value pairs equal to the date range', function () {
+  it.skip('"resolved" key in returned object should be an object with a number of key-value pairs equal to the date range', function () {
     // TODO
   });
 
-  it('key-value pairs in "created" and "resolved" object keys should contain values that are numbers', function () {
+  it.skip('key-value pairs in "created" and "resolved" object keys should contain values that are numbers', function () {
     // TODO
   });
 
