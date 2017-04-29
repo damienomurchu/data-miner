@@ -2,7 +2,15 @@
 
 const burndown = require('./burndown');
 
-exports.burndownReportData = function(jiraData, sprintName) {
+exports.burndownReportData = function (jiraData, sprintName) {
+
+  // guard against missing arguments
+  if (!jiraData || !sprintName) {
+    var reply = {};
+    reply.error = 'You have not passed in valid arguments';
+    return reply;
+  }
+
   var dataSet = {};
   dataSet.report = 'Burndown report';
   dataSet.sprint = sprintName;

@@ -18,6 +18,7 @@ describe('BurndownChart tests', function () {
   const sprintName = fixtures.sprintName;
   const sprintStart = fixtures.sprintStart;
   const sprintEnd = fixtures.sprintEnd;
+  const sprintDates = fixtures.sprintDates;
 
   beforeEach(function () {
     //
@@ -27,64 +28,96 @@ describe('BurndownChart tests', function () {
     //
   });
 
-  it.skip('should return an error object if no jiraData is passed in', function () {
-
+  it('should return an error object if no jiraData is passed in', function () {
+    var bd = burndownChart.burndownReportData(sprintName);
+    expect(bd.error).to.exist;
   });
 
-  it.skip('should return an error object if no sprint name is passed in', function () {
-
+  it('should return an error object if no sprint name is passed in', function () {
+    var bd = burndownChart.burndownReportData(testData);
+    expect(bd.error).to.exist;
   });
 
-  it.skip('should return error object if no sprint data present in jiraData passed in', function () {
-
+  it('returned object should contain a key "sprint" with an actual value', function () {
+    var bd = burndownChart.burndownReportData(testData, sprintName);
+    expect(bd.sprint).to.exist;
+    expect(bd.sprint).to.be.ok;
   });
 
-  it.skip('returned object should not contain a null or undefined value for the "sprint" key', function () {
-
+  it('returned object should contain a key "report" with an actual value', function () {
+    var bd = burndownChart.burndownReportData(testData, sprintName);
+    expect(bd.report).to.exist;
+    expect(bd.report).to.be.ok;
   });
 
-  it.skip('returned object should not contain a null or undefined value for the "report" key', function () {
-
+  it('returned object should contain a key "actualBurndown" whose value is an array', function () {
+    var bd = burndownChart.burndownReportData(testData, sprintName);
+    expect(bd.actualBurndown).to.exist;
+    expect(bd.actualBurndown instanceof Array).to.be.true;
   });
 
-  it.skip('returned object should contain a key "actualBurndown" whose value is an array', function () {
-
+  it('"actualBurndown" array should objects of key-value pairs with keys for "date" and "points"', function () {
+    var bd = burndownChart.burndownReportData(testData, sprintName);
+    bd.actualBurndown.forEach(datapoint => {
+      expect(datapoint.date).to.exist;
+      expect(datapoint.points).to.exist;
+    });
   });
 
-  it.skip('"actualBurndown" array should objects of key-value pairs with keys for "date" and "points"', function () {
-
+  it('values for object keys in the "actualBurndown" array should not be null or undefined', function () {
+    var bd = burndownChart.burndownReportData(testData, sprintName);
+    bd.actualBurndown.forEach(datapoint => {
+      expect(datapoint.date).to.exist;
+    });
   });
 
-  it.skip('keys for objects in the "actualBurndown" array should not be null or undefined', function () {
-
+  it('values for "date" keys of objects in the "actualBurndown" array should be date strings', function () {
+    var bd = burndownChart.burndownReportData(testData, sprintName);
+    bd.actualBurndown.forEach(datapoint => {
+      expect(typeof datapoint.date == 'string' ).to.be.true;
+    });
   });
 
-  it.skip('values for "date" keys of objects in the "actualBurndown" array should be date strings', function () {
-
+  it('values for "points" keys of objects in the "actualBurndown" array should be numbers', function () {
+    var bd = burndownChart.burndownReportData(testData, sprintName);
+    bd.actualBurndown.forEach(datapoint => {
+      expect(typeof datapoint.points == 'number' ).to.be.true;
+    });
   });
 
-  it.skip('values for "points" keys of objects in the "actualBurndown" array should be numbers', function () {
-
+  it('returned object should contain a key "expectedBurndown" whose value is an array', function () {
+    var bd = burndownChart.burndownReportData(testData, sprintName);
+    expect(bd.expectedBurndown).to.exist;
+    expect(bd.expectedBurndown instanceof Array).to.be.true;
   });
 
-  it.skip('returned object should contain a key "expectedBurndown" whose value is an array', function () {
-
+  it('"expectedBurndown" array should objects of key-value pairs with keys for "date" and "points"', function () {
+    var bd = burndownChart.burndownReportData(testData, sprintName);
+    bd.expectedBurndown.forEach(datapoint => {
+      expect(datapoint.date).to.exist;
+      expect(datapoint.points).to.exist;
+    });
   });
 
-  it.skip('"expectedBurndown" array should objects of key-value pairs with keys for "date" and "points"', function () {
-
+  it('values for object keys in the "expectedBurndown" array should not be null or undefined', function () {
+    var bd = burndownChart.burndownReportData(testData, sprintName);
+    bd.expectedBurndown.forEach(datapoint => {
+      expect(datapoint.date).to.exist;
+    });
   });
 
-  it.skip('keys for objects in the "expectedBurndown" array should not be null or undefined', function () {
-
+  it('values for "date" keys of objects in the "expectedBurndown" array should be date strings', function () {
+    var bd = burndownChart.burndownReportData(testData, sprintName);
+    bd.expectedBurndown.forEach(datapoint => {
+      expect(typeof datapoint.date == 'string' ).to.be.true;
+    });
   });
 
-  it.skip('values for "date" keys of objects in the "expectedBurndown" array should be date strings', function () {
-
-  });
-
-  it.skip('values for "points" keys of objects in the "expectedBurndown" array should be numbers', function () {
-
+  it('values for "points" keys of objects in the "expectedBurndown" array should be numbers', function () {
+    var bd = burndownChart.burndownReportData(testData, sprintName);
+    bd.expectedBurndown.forEach(datapoint => {
+      expect(typeof datapoint.points == 'number' ).to.be.true;
+    });
   });
 
 });
