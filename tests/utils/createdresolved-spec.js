@@ -27,28 +27,41 @@ describe('Created-vs-Resolved tests', function () {
     //
   });
 
-  it('', function () {
-
+  it('should return error object if no jiraData passed in', function () {
+    var cr = createdresolved.createdResolved(testData, start, end);
   });
 
-  it('', function () {
-
+  it('should return error object if no start date passed in', function () {
+    var cr = createdresolved.createdResolved(testData, start, end);
+    // TODO
   });
 
-  it('', function () {
-
+  it('should return error object if no end date passed in', function () {
+    // TODO
   });
 
-  it('', function () {
-
+  it('should handle a date that is passed in as a string', function () {
+    // TODO
   });
 
-  it('', function () {
-
+  it('should handle a date that is passed in as a Date object', function () {
+    // TODO
   });
 
-  it('', function () {
+  it('should return an object with keys of "created" and "resolved"', function () {
+    // TODO
+  });
 
+  it('"created" key in returned object should be an object with a number of key-value pairs equal to the date range', function () {
+    // TODO
+  });
+
+  it('"resolved" key in returned object should be an object with a number of key-value pairs equal to the date range', function () {
+    // TODO
+  });
+
+  it('key-value pairs in "created" and "resolved" object keys should contain values that are numbers', function () {
+    // TODO
   });
 
 });

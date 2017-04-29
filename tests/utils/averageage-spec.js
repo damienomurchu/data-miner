@@ -52,11 +52,11 @@ describe('Average-Age tests', function () {
     // TODO
   });
 
-  it('should return an object with a key for each date in the range', function () {
+  it('each key-value pair in the returned object should have a key for each date in the range', function () {
     // TODO
   });
 
-  it('should return an object that contains no null or undefined values', function () {
+  it('each key-value pair in the returned object should have values that are numbers', function () {
     // TODO
   });
 

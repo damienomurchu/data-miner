@@ -27,23 +27,23 @@ describe('Velocity tests', function () {
     //
   });
 
-  it('', function () {
+  it('should return error object if no jiraData passed in', function () {
 
   });
 
-  it('', function () {
+  it('should return error object if no sprint data present in jiraData passed in', function () {
 
   });
 
-  it('', function () {
+  it('should return an object with one or more key-value pairs', function () {
 
   });
 
-  it('', function () {
+  it('each key-value pair in the returned object should have keys for "sprint", "expected", and "actual"', function () {
 
   });
 
-  it('', function () {
+  it('each key-value pair in the returned object should have values that are numbers', function () {
 
   });
 
