@@ -3,9 +3,7 @@
 const sprintReport = require('../../utils/sprintReport');
 const chai = require('chai');
 var expect = chai.expect;
-const assert = chai.assert;
-var testData = require('../../sample-data/test-data.json');
-//const testUtils = require('./test-utils');
+var testData = require('./test-jira-data.json');
 const fixtures = require('./test-fixtures.json');
 
 describe('SprintReport tests', function () {

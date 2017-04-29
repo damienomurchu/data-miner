@@ -1,13 +1,9 @@
-// stub for future data.js tests
-
 'use strict';
 
 const data = require('../../utils/data');
 const chai = require('chai');
 var expect = chai.expect;
-const assert = chai.assert;
-var testData = require('../../sample-data/test-data.json');
-//const testUtils = require('./test-utils');
+var testData = require('./test-jira-data.json');
 const fixtures = require('./test-fixtures.json');
 
 describe('Utils-Data.js tests', function () {

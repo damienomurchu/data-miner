@@ -3,9 +3,6 @@
 var fs = require("fs");
 
 const sampleData = require('../../sample-data/rc2.json');
-const dt = require('../../utils/data');
-
-//function getHistoryRes(issue)
 
 // takes a complete, raw jira data file & reduces it to be used in testing
 exports.generateTestData = function (jiraData) {
@@ -16,16 +13,9 @@ exports.generateTestData = function (jiraData) {
     data.Created = issue.Created;
     data.Updated = issue.Updated;
     data.Resolution = issue.Resolution;
-    //data.History = '';
-    //data[History].Resolution = issue.History.Resolution;
     data.Sprint = issue.Sprint;
     data.History = issue.History;
     data['Story Points'] = issue['Story Points'];
-
-
-    // data.Sprint = issue.Sprint;
-    // data.History = issue.History;
-    // data['Story Points'] = issue['Story Points'];
     return data;
   });
   return testData;
@@ -59,17 +49,8 @@ dta.forEach(issue => {
   delete issue.History['Fix Version/s'];
   delete issue.History.Comment;
 });
-/*delete dta.History.Assignee;
-delete dta.History.Status;
-delete dta.History.Description;*/
 
-//console.log(dta);
-
-
-fs.writeFile( 'reducedJiraDump.json', JSON.stringify(dta), "utf8", (err) => {
+fs.writeFile( 'test-jira-data.json', JSON.stringify(dta), "utf8", (err) => {
   if (err) throw err;
   console.log('The file has been saved!');
 });
-
-
-
