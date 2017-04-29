@@ -3,6 +3,13 @@ const utils = require('./data.js');
 // returns a data set to populate a velocity chart
 exports.velocity = function(jiraData) {
 
+  // guard against missing arguments
+  if (!jiraData) {
+    var reply = {};
+    reply.error = 'You have not passed in any jira data';
+    return reply;
+  }
+
   var sprintInfo = utils.getSprintInfo(jiraData);
 
   // get all sprints
