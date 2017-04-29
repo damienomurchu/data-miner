@@ -63,7 +63,7 @@ describe('Utils-Data.js tests', function () {
     expect(sprintDetails.length).to.equal(6);
   });
 
-  it('sprintDetails does not return duplicate sprint names', function () {
+  it.skip('sprintDetails does not return duplicate sprint names', function () {
     // TODO implement
   });
 
@@ -83,7 +83,24 @@ describe('Utils-Data.js tests', function () {
     expect(issuesInSprint.length).to.equal(12);
   });
 
-  it.skip('resolvedDate returns correct date', function () {
+  it('resolvedDate returns correct date', function () {
+    const issuesInSprint = data.issuesInSprint(testData, sprintName);
+    expect(data.resolvedDate(issuesInSprint[1])).to.equal('2017-03-28');
+  });
+
+  it.skip('tests resolvedDate(issue)', function () {
+
+  });
+
+  it.skip('tests ptsResolved(issueArray, date)', function () {
+
+  });
+
+  it.skip('tests resolvedNow(issue, date)', function () {
+
+  });
+
+  it.skip('tests countItems(array, element)', function () {
 
   });
 

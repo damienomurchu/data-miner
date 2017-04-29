@@ -88,7 +88,7 @@ exports.issuesInSprint = function(jiraData, sprintName) {
 exports.resolvedDate = function(issue) {
 
   if (!issue.History.Resolution)
-    return undefined;
+    return 'unclosed';
 
   var resolvedDate = issue.History.Resolution.filter(issue => {
     return issue.to === 'Done';
@@ -114,6 +114,8 @@ exports.resolvedDates = function (sprintTickets) {
   });
 }
 
+// accepts an array of issues, and returns the number of story points from those issues that
+// have been resolved by the date passed in
 exports.ptsResolved = function (arr, date) {
   date = date.substring(0, 10);
   var pointsResolved = 0;
@@ -123,11 +125,6 @@ exports.ptsResolved = function (arr, date) {
   });
   return pointsResolved;
 }
-
-// retrieves an updated json dump of data from JIRA
-exports.pullFile = function () {
-  // TODO pull updated data set from JIRA via kujira
-};
 
 // checks whether an issue is resolved at a certain date
 exports.resolvedNow = function (iss, date) {
