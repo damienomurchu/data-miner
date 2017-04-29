@@ -1,0 +1,16 @@
+{
+  "sampleWeek": {
+    "Monday": "2017-04-17",
+    "Tuesday": "2017-04-18",
+    "Wednesday": "2017-04-19",
+    "Thursday": "2017-04-20",
+    "Friday": "2017-04-21",
+    "Saturday": "2017-04-22",
+    "Sunday": "2017-04-23"
+  },
+  "startDate": "2017-04-17",
+  "endDate": "2017-04-23",
+  "sprintName": "IR302 - Boulder Breaker",
+  "sprintStart": "2017-03-24",
+  "sprintEnd": "2017-04-07"
+}
