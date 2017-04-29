@@ -37,20 +37,14 @@ router.post('/velocity', function (req, res) {
 // POST /graph/averageAge
 // Analyse the received raincatchDump.json & return a json dataset to feed a sprint average age chart
 router.post('/averageAge', upload.array(), function (req, res) {
-  /*console.log(req.body.start);
-  console.log(req.body.end);
-  req.body.start = '2017-01-01';
-  req.body.end = '2017-03-31';*/
   var start = req.body.start;
   var end = req.body.end;
   res.json(averageage.averageAge(start, end));
-  //res.json(averageage.averageAge('2017-01-01', '2017-03-31'));
 });
 
 // POST /graph/createdResolved
 // Analyse the received raincatchDump.json & return a json dataset to feed a sprint created vs resolved chart
 router.post('/createdResolved', upload.array(), function (req, res) {
-  //res.send('You have just hit the route: /graph/createdResolved');
   res.json(createdresolved.createdResolved(req.body.start, req.body.end));
 });
 

@@ -5,7 +5,7 @@
 const yargs = require('yargs');
 
 const cli = function() {
-  var argv = yargs
+  return yargs
       .usage('Usage: node $0 -f <file> [<flag> <option>]...')
       .option('f', {
         alias: 'file',
@@ -41,6 +41,6 @@ const cli = function() {
       .demandCommand()
       .help()
       .argv;
-}
+};
 
 cli();

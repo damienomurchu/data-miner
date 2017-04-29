@@ -34,8 +34,7 @@ exports.averageAge = function (jiraData, startDate, endDate) {
 
     // get all unresolved & open issues that exist on this date
     var relevantIssues = issues.filter(iss => {
-      var relevant = ((iss.created <= date) && !(utils.resolvedNow(iss, date)));
-      return relevant;
+      return ((iss.created <= date) && !(utils.resolvedNow(iss, date)));
     });
     var numIssues = relevantIssues.length; // get number of issues
 

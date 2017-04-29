@@ -8,15 +8,7 @@ const fixtures = require('./test-fixtures.json');
 
 describe('BurndownChart test', function () {
 
-  const sampleWeek = fixtures.sampleWeek;
-
-  const start = fixtures.startDate;
-  const end = fixtures.endDate;
-
   const sprintName = fixtures.sprintName;
-  const sprintStart = fixtures.sprintStart;
-  const sprintEnd = fixtures.sprintEnd;
-  const sprintDates = fixtures.sprintDates;
 
   beforeEach(function () {
     //

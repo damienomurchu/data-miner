@@ -5,8 +5,10 @@ exports.velocity = function(jiraData) {
 
   // guard against missing arguments
   if (!jiraData) {
-    var reply = {};
-    reply.error = 'You have not passed in any jira data';
+    var reply = [];
+    var error = {};
+    error.error = 'You have not passed in any jira data';
+    reply.push(error);
     return reply;
   }
 

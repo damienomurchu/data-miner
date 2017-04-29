@@ -31,7 +31,6 @@ exports.workingDaysInRange = function (start, end) {
 
 // helper to return array of all the full sprint value strings in a JIRA file
 function getSprintDetails(jiraData) {
-  // TODO get sprint details from most recently pulled file
   var unf = jiraData.map(issue => {
     return issue.Sprint;
   }).filter(sprint => {
@@ -40,7 +39,7 @@ function getSprintDetails(jiraData) {
   var fil = [].concat.apply([], unf); // flatten previous array of arrays
 
   return fil.filter((x, i, a) => a.indexOf(x) == i); // return only unique sprint values
-};
+}
 
 // returns name, start and end date of sprint
 exports.getSprintInfo = function(jiraData) {
@@ -72,8 +71,8 @@ exports.getSprintDates = function(jiraData, sprintName) {
 }
 
 // get all tickets in a sprint
-exports.issuesInSprint = function(jiraData, sprintName) {
-  var sprintTickets = jiraData.filter(issue => {
+exports.issuesInSprint = function (jiraData, sprintName) {
+  return jiraData.filter(issue => {
     // check there is a sprint value
     if (issue.Sprint === null || issue.Sprint.length < 1)
       return false;
@@ -81,8 +80,7 @@ exports.issuesInSprint = function(jiraData, sprintName) {
       return sprint.indexOf(sprintName) > -1;
     }).length;
   });
-  return sprintTickets;
-}
+};
 
 // returns the date an issue was resolved
 exports.resolvedDate = function(issue) {
@@ -96,11 +94,10 @@ exports.resolvedDate = function(issue) {
     return iss.change;
   })[0];
 
-  //return dayDate(resolvedDate);
   if (resolvedDate !== undefined)
     return resolvedDate.substring(0, 10);
   return 'unclosed';
-}
+};
 
 // get resolved dates for an array of issues
 exports.resolvedDates = function (sprintTickets) {
@@ -112,7 +109,7 @@ exports.resolvedDates = function (sprintTickets) {
     iss.resolved = this.resolvedDate(issue);
     return iss;
   });
-}
+};
 
 // accepts an array of issues, and returns the number of story points from those issues that
 // have been resolved by the date passed in
@@ -124,14 +121,14 @@ exports.ptsResolved = function (arr, date) {
       pointsResolved = pointsResolved + iss['Story Points'];
   });
   return pointsResolved;
-}
+};
 
 // checks whether an issue is resolved at a certain date
 exports.resolvedNow = function (iss, date) {
   if (iss.resolved === undefined)
     return false;
   return iss.resolved <= date;
-}
+};
 
 // returns the number of times a value is in an array
 exports.countItems = function (arr, what) {
@@ -142,7 +139,7 @@ exports.countItems = function (arr, what) {
   }
 
   return count;
-}
+};
 
 // returns pertinent details of a JIRA issue
 exports.issueData = function (jiraData) {
@@ -160,18 +157,3 @@ exports.issueData = function (jiraData) {
     return iss;
   });
 };
-
-/*
-iss.id
-iss.jira
-iss.res // Open or Done
-iss.sprint // all sprints of ticket
-iss.assignee // 0+ assignees
-iss.open
-iss.codinginprog
-iss.prsent
-iss.devcomplete
-iss.readyforqa
-iss.donedate
-iss.storypoints
-*/

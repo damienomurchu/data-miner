@@ -13,3 +13,6 @@ sample-data
 
 # ignore istanbul coverage folder
 coverage
+
+# ignore sonarqube folder
+.scannerwork

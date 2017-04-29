@@ -8,15 +8,8 @@ const fixtures = require('./test-fixtures.json');
 
 describe('Created-vs-Resolved test', function () {
 
-  const sampleWeek = fixtures.sampleWeek;
-
   const start = fixtures.startDate;
   const end = fixtures.endDate;
-  const datesInWeek = fixtures.datesInWeek;
-
-  const sprintName = fixtures.sprintName;
-  const sprintStart = fixtures.sprintStart;
-  const sprintEnd = fixtures.sprintEnd;
 
   beforeEach(function () {
     //
@@ -28,17 +21,17 @@ describe('Created-vs-Resolved test', function () {
 
   it('should return error object if no jiraData passed in', function () {
     var cr = createdresolved.createdResolved(start, end);
-    expect(cr.error).to.exist;
+    expect(cr[0].error).to.exist;
   });
 
   it('should return error object if no start date passed in', function () {
     var cr = createdresolved.createdResolved(testData, end);
-    expect(cr.error).to.exist;
+    expect(cr[0].error).to.exist;
   });
 
   it('should return error object if no end date passed in', function () {
     var cr = createdresolved.createdResolved(testData, start);
-    expect(cr.error).to.exist;
+    expect(cr[0].error).to.exist;
   });
 
   it('should handle a date that is passed in as a string', function () {
@@ -76,12 +69,12 @@ describe('Created-vs-Resolved test', function () {
     var cr = createdresolved.createdResolved(testData, start, end);
 
     const createdValues = Object.keys(cr[0].created).map(key => cr[0].created[key]);
-    createdValues.every(value => {
+    createdValues.forEach(value => {
       expect(typeof value == 'number').to.be.true;
     });
 
     const resolvedValues = Object.keys(cr[1].resolved).map(key => cr[1].resolved[key]);
-    resolvedValues.every(value => {
+    resolvedValues.forEach(value => {
       expect(typeof value == 'number').to.be.true;
     });
   });

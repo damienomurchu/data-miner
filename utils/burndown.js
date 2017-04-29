@@ -15,7 +15,7 @@ exports.actualBurndown = function (jiraData, sprintName) {
   var resolvedInfo = utils.resolvedDates(sprintTickets).filter(iss => {
     return iss.storypoints !== 0;
   }).map(tck => {
-    dt = {};
+    var dt = {};
     dt.resolved = tck.resolved;
     dt['Story Points'] = tck.storypoints;
     return dt;
@@ -29,17 +29,15 @@ exports.actualBurndown = function (jiraData, sprintName) {
   });
 
   // reduces story points by points resolved - presumes dates are ordered!
-  var startDate = sprintDates[0];
   var pointsResolved = 0;
-  var actualBurndown = sprintDates.map(date => {
+  return sprintDates.map(date => {
     pointsResolved = pointsResolved + utils.ptsResolved(resolvedInfo, date);
     var datapoint = {};
     datapoint.date = date;
     datapoint.points = sprintPoints - pointsResolved;
     return datapoint;
   });
-  return actualBurndown;
-}
+};
 
 // returns a dataset to map the theoretical burndown for a sprint
 exports.theoreticalBurndownLine = function (jiraData, sprintName) {
@@ -66,15 +64,13 @@ exports.theoreticalBurndownLine = function (jiraData, sprintName) {
   var avgPointsPerDay = sprintPoints / workingDays.length;
 
   // for each working day in sprint, reduce points by theoretical amount
-  var theoretical = sprintDates.map(date => {
+  return sprintDates.map(date => {
     var datapoint = {};
     datapoint.date = date;
     var numdays = utils.workingDaysInRange(startDate, date).length;
     datapoint.points =  sprintPoints - (numdays * avgPointsPerDay);
     return datapoint;
   });
-
-  return theoretical;
 }
 
 exports.issueList = function (jiraData, sprintName) {
@@ -83,7 +79,7 @@ exports.issueList = function (jiraData, sprintName) {
   }).map(issue => {
     var iss = {};
     iss.issue = issue.key;
-    iss.events = JSON.stringify(issue.History); // TODO clean up event list and sort render by ascending date
+    iss.events = JSON.stringify(issue.History); 
     return iss;
   });
 }
