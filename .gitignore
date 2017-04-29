@@ -9,3 +9,6 @@ sample-data
 
 # exclude sonarqube setting files
 .sonar
+
+# ignore istanbul coverage folder
+coverage
