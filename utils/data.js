@@ -99,7 +99,7 @@ exports.resolvedDate = function(issue) {
   //return dayDate(resolvedDate);
   if (resolvedDate !== undefined)
     return resolvedDate.substring(0, 10);
-  return undefined;
+  return 'unclosed';
 }
 
 // get resolved dates for an array of issues
@@ -120,8 +120,8 @@ exports.ptsResolved = function (arr, date) {
   date = date.substring(0, 10);
   var pointsResolved = 0;
   arr.forEach(iss => {
-    if (iss.date !== undefined && iss.date === date)
-      pointsResolved = pointsResolved + iss.storypoints;
+    if (iss.resolved !== undefined && iss.resolved !== 'unclosed' && iss.resolved === date)
+      pointsResolved = pointsResolved + iss['Story Points'];
   });
   return pointsResolved;
 }
@@ -150,16 +150,15 @@ exports.issueData = function (jiraData) {
     var iss = {};
     iss.id = issue.id;
     iss.jira = issue.key;
-    iss.resolved = resolvedDate(issue);
-    iss.resolution = issue.History.Resolution;
-    iss.sprint = issue.History.Sprint; // TODO get all sprints ticket is in
-    iss.assignee = issue.History.Assignee; // TODO get all assignees of ticket
-    iss.status = issue.History.Status; // TODO get dates for Open, Coding in Prog, PR Sent, Dev Complete, Ready for QA, Done
-    iss.storypoints = issue.History['Story Points']; // TODO dates story points are changed
-    iss.description = issue.History.Description;
-    iss.points = issue['Story Points'];
+    iss.resolution = issue.History.Resolution || [];
+    iss.sprint = issue.History.Sprint || [];
+    iss.assignee = issue.History.Assignee || [];
+    iss.status = issue.History.Status || [];
+    iss.storypoints = issue.History['Story Points'] || [];
+    iss.description = issue.History.Description || [];
+    iss.points = issue['Story Points'] || [];
     return iss;
-  })[5];
+  });
 };
 
 /*

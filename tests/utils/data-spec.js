@@ -5,6 +5,7 @@ const chai = require('chai');
 var expect = chai.expect;
 var testData = require('./test-jira-data.json');
 const fixtures = require('./test-fixtures.json');
+const _ = require('underscore');
 
 describe('Utils-Data.js tests', function () {
 
@@ -14,8 +15,10 @@ describe('Utils-Data.js tests', function () {
   const end = fixtures.endDate;
 
   const sprintName = fixtures.sprintName;
-  const sprintStart = fixtures.sprintStart;
-  const sprintEnd = fixtures.sprintEnd;
+
+  const sampleIssues = fixtures.sampleIssues;
+  const unresolvedIssue = fixtures.sampleIssues[0];
+  const resolvedIssue = fixtures.sampleIssues[1];
 
   beforeEach(function () {
     //
@@ -59,8 +62,9 @@ describe('Utils-Data.js tests', function () {
     expect(sprintDetails.length).to.equal(6);
   });
 
-  it.skip('sprintDetails does not return duplicate sprint names', function () {
-    // TODO implement
+  it('sprintDetails does not return duplicate sprint names', function () {
+    const sprintDetails = data.getSprintInfo(testData);
+    expect(_.uniq(sprintDetails).length === sprintDetails.length).to.be.true;
   });
 
   it('getSprintDates returns the correct start and end date', function () {
@@ -79,25 +83,52 @@ describe('Utils-Data.js tests', function () {
     expect(issuesInSprint.length).to.equal(12);
   });
 
-  it('resolvedDate returns correct date', function () {
-    const issuesInSprint = data.issuesInSprint(testData, sprintName);
-    expect(data.resolvedDate(issuesInSprint[1])).to.equal('2017-03-28');
+  it('resolvedDate returns correct date for a resolved issue', function () {
+    var resolvedData = data.resolvedDate(resolvedIssue);
+    expect(resolvedData).to.equal('2017-03-28');
   });
 
-  it.skip('tests resolvedDate(issue)', function () {
-
+  it('resolvedDate returns "unclosed" for a resolved issue', function () {
+    var resolvedData = data.resolvedDate(unresolvedIssue);
+    expect(resolvedData).to.equal('unclosed');
   });
 
-  it.skip('tests ptsResolved(issueArray, date)', function () {
-
+  it('resolvedDates returns an array of issues with a property "resolved" that has a value', function () {
+    var resolvedData = data.resolvedDates(sampleIssues);
+    resolvedData.forEach(issue=> {
+      expect(issue.resolved).to.exist;
+      expect(issue.resolved).to.be.ok;
+    });
   });
 
-  it.skip('tests resolvedNow(issue, date)', function () {
-
+  it('ptsResolved returns correctly the number of issue points that have been resolved by the specified date', function () {
+    var ptsResolvedBy = data.ptsResolved(sampleIssues, '2017-03-28');
+    expect(ptsResolvedBy).to.equal(5);
   });
 
-  it.skip('tests countItems(array, element)', function () {
+  it('resolvedNow(issue, date) returns correctly that an issue is resolved by the specified date', function () {
+    expect(data.resolvedNow(sampleIssues[1], '2017-03-27')).to.be.false;
+    expect(data.resolvedNow(sampleIssues[1], '2017-03-28')).to.be.true;
+  });
 
+  it('tests countItems returns correctly the number of times an element is in an array', function () {
+    expect(data.countItems([1,2,3,1,2,2,8,2], 2)).to.equal(4);
+    expect(data.countItems(sampleIssues, sampleIssues[1])).to.equal(1);
+  });
+
+  it('issueData returns an object with the expected keys', function () {
+    var issues = data.issueData(testData);
+    issues.forEach(iss => {
+      expect(iss.id).to.exist;
+      expect(iss.jira).to.exist;
+      expect(iss.resolution).to.exist;
+      expect(iss.sprint).to.exist;
+      expect(iss.assignee).to.exist;
+      expect(iss.status).to.exist;
+      expect(iss.storypoints).to.exist;
+      expect(iss.description).to.exist;
+      expect(iss.points).to.exist;
+    });
   });
 
 });

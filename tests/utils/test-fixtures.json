@@ -17,5 +17,145 @@
   "sprintDates": [
     "2017-03-24", "2017-03-25", "2017-03-26", "2017-03-27", "2017-03-28", "2017-03-29", "2017-03-30", "2017-03-31",
     "2017-04-01", "2017-04-02", "2017-04-03", "2017-04-04", "2017-04-05", "2017-04-06", "2017-04-07"
+  ],
+  "sampleIssues": [
+    {
+      "id": "12684932",
+      "key": "RAINCATCH-703",
+      "Created": "2017-03-29T11:05:56.000Z",
+      "Updated": "2017-03-29T11:05:56.000Z",
+      "Resolution": null,
+      "Sprint": [],
+      "History": {},
+      "Story Points": null
+    },
+    {
+      "id": "12684405",
+      "key": "RAINCATCH-698",
+      "Created": "2017-03-24T15:16:20.000Z",
+      "Updated": "2017-03-28T15:36:05.000Z",
+      "Resolution": "Done",
+      "Sprint": [
+        "com.atlassian.greenhopper.service.sprint.Sprint@27c22f6[id=5876,rapidViewId=3504,state=ACTIVE,name=IR302 - Boulder Breaker,startDate=2017-03-24T12:23:15.909-04:00,endDate=2017-04-07T11:23:00.000-04:00,completeDate=<null>,sequence=5876]"
+      ],
+      "History": {
+        "Resolution": [
+          {
+            "author": "Tom Jackman",
+            "change": "2017-03-24T15:16:20.000Z",
+            "from": null,
+            "to": null
+          },
+          {
+            "author": "Tom Jackman",
+            "change": "2017-03-28T11:35:53.000-0400",
+            "from": null,
+            "to": "Done"
+          }
+        ],
+        "Sprint": [
+          {
+            "author": "Tom Jackman",
+            "change": "2017-03-24T15:16:20.000Z",
+            "from": [],
+            "to": []
+          },
+          {
+            "author": "Leigh Griffin",
+            "change": "2017-03-24T12:21:29.000-0400",
+            "from": [],
+            "to": [
+              "IR302 - RainCatcher"
+            ]
+          }
+        ],
+        "Story Points": [
+          {
+            "author": "Tom Jackman",
+            "change": "2017-03-24T15:16:20.000Z",
+            "from": null,
+            "to": null
+          },
+          {
+            "author": "Vitalii Chepeliuk",
+            "change": "2017-03-24T11:20:24.000-0400",
+            "from": null,
+            "to": "3"
+          }
+        ]
+      },
+      "Story Points": 3,
+      "resolved": "2017-03-28"
+    },
+    {
+      "id": "12684120",
+      "key": "RAINCATCH-658",
+      "Created": "2017-03-23T14:50:03.000Z",
+      "Updated": "2017-03-28T09:30:25.000Z",
+      "Resolution": "Done",
+      "Sprint": [
+        "com.atlassian.greenhopper.service.sprint.Sprint@c5b71ce[id=5820,rapidViewId=3504,state=CLOSED,name=IR301 - Monorail!,startDate=2017-03-10T11:17:23.728-05:00,endDate=2017-03-24T10:17:00.000-04:00,completeDate=2017-03-24T12:15:14.526-04:00,sequence=5820]",
+        "com.atlassian.greenhopper.service.sprint.Sprint@27c22f6[id=5876,rapidViewId=3504,state=ACTIVE,name=IR302 - Boulder Breaker,startDate=2017-03-24T12:23:15.909-04:00,endDate=2017-04-07T11:23:00.000-04:00,completeDate=<null>,sequence=5876]"
+      ],
+      "History": {
+        "Resolution": [
+          {
+            "author": "Vitalii Chepeliuk",
+            "change": "2017-03-23T14:50:03.000Z",
+            "from": null,
+            "to": null
+          },
+          {
+            "author": "Michal Ogrodniczak",
+            "change": "2017-03-28T05:23:55.000-0400",
+            "from": null,
+            "to": "Done"
+          }
+        ],
+        "Sprint": [
+          {
+            "author": "Vitalii Chepeliuk",
+            "change": "2017-03-23T14:50:03.000Z",
+            "from": [],
+            "to": []
+          },
+          {
+            "author": "Michal Ogrodniczak",
+            "change": "2017-03-24T09:41:42.000-0400",
+            "from": [],
+            "to": [
+              "IR301 - Monorail!"
+            ]
+          },
+          {
+            "author": "Michal Ogrodniczak",
+            "change": "2017-03-27T05:40:18.000-0400",
+            "from": [
+              "IR301 - Monorail!"
+            ],
+            "to": [
+              "IR301 - Monorail!",
+              "IR302 - Boulder Breaker"
+            ]
+          }
+        ],
+        "Story Points": [
+          {
+            "author": "Vitalii Chepeliuk",
+            "change": "2017-03-23T14:50:03.000Z",
+            "from": null,
+            "to": null
+          },
+          {
+            "author": "Leigh Griffin",
+            "change": "2017-03-24T12:08:19.000-0400",
+            "from": null,
+            "to": "2"
+          }
+        ]
+      },
+      "Story Points": 2,
+      "resolved": "2017-03-28"
+    }
   ]
 }
