@@ -6,7 +6,7 @@ var expect = chai.expect;
 var testData = require('./test-jira-data.json');
 const fixtures = require('./test-fixtures.json');
 
-describe('Average-Age tests', function () {
+describe('Average-Age test', function () {
 
   const sampleWeek = fixtures.sampleWeek;
 

@@ -7,7 +7,7 @@ var testData = require('./test-jira-data.json');
 const fixtures = require('./test-fixtures.json');
 const _ = require('underscore');
 
-describe('Utils-Data.js tests', function () {
+describe('Utils-Data.js test', function () {
 
   const sampleWeek = fixtures.sampleWeek;
 
@@ -111,7 +111,7 @@ describe('Utils-Data.js tests', function () {
     expect(data.resolvedNow(sampleIssues[1], '2017-03-28')).to.be.true;
   });
 
-  it('tests countItems returns correctly the number of times an element is in an array', function () {
+  it('test countItems returns correctly the number of times an element is in an array', function () {
     expect(data.countItems([1,2,3,1,2,2,8,2], 2)).to.equal(4);
     expect(data.countItems(sampleIssues, sampleIssues[1])).to.equal(1);
   });

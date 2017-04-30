@@ -7,11 +7,15 @@
   },
   "main": "npm-service-methods.js",
   "bin": {
-    "data-miner": "./dataminer-cli.js"
+    "data-miner": "./dataminer-cli.js",
+    "mocha": "./node_modules/mocha/bin/mocha",
+    "_mocha": "./node_modules/mocha/bin/_mocha"
   },
   "scripts": {
-    "test": "mocha -u tdd --recursive --reporter spec '**/*spec.js'",
-    "test-travis": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -u tdd --recursive --reporter spec '**/*spec.js'"
+    "test": "mocha --recursive '**/*spec.js'",
+    "test-travis": "./node_modules/istanbul/lib/cli.js cover _mocha --recursive '**/*spec.js'",
+    "test-watch": "mocha --watch --recursive '**/*spec.js'",
+    "test-markdown": "mocha ./test -R markdown > ./spec.md --recursive"
   },
   "repository": {
     "type": "git",

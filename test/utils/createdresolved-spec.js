@@ -6,7 +6,7 @@ var expect = chai.expect;
 var testData = require('./test-jira-data.json');
 const fixtures = require('./test-fixtures.json');
 
-describe('Created-vs-Resolved tests', function () {
+describe('Created-vs-Resolved test', function () {
 
   const sampleWeek = fixtures.sampleWeek;
 

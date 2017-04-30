@@ -1,3 +1,4 @@
+/*
 'use strict'
 
 var fs = require("fs");
@@ -54,3 +55,4 @@ fs.writeFile( 'test-jira-data.json', JSON.stringify(dta), "utf8", (err) => {
   if (err) throw err;
   console.log('The file has been saved!');
 });
+*/
