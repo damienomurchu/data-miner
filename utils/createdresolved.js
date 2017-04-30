@@ -5,6 +5,19 @@ const utils = require('./data.js');
 // accepts a start and end date, and returns a dataset to populate a created-v-resolved chart
 exports.createdResolved = function (jiraData, startDate, endDate) {
 
+  // guard against missing arguments
+  if (!jiraData || !startDate || !endDate) {
+    var reply = {};
+    reply.error = 'You have not passed in valid arguments';
+    return reply;
+  }
+
+  // guard to ensure incoming dates are YYYY-MM-DD strings
+  if (startDate instanceof Date)
+    startDate = startDate.toISOString().substring(0, 10);
+  if (endDate instanceof Date)
+    endDate = endDate.toISOString().substring(0, 10);
+
   // get date range
   var dateRange = utils.datesInRange(startDate, endDate);
 

@@ -5,6 +5,18 @@ const utils = require('../utils/data.js');
 
 exports.averageAge = function (jiraData, startDate, endDate) {
 
+  // guard against missing arguments
+  if (!jiraData || !startDate || !endDate) {
+    var reply = {};
+    reply.error = 'You have not passed in valid arguments';
+    return reply;
+  }
+
+  // guard to ensure incoming dates are YYYY-MM-DD strings
+  if (startDate instanceof Date)
+    startDate = startDate.toISOString().substring(0, 10);
+  if (endDate instanceof Date)
+    endDate = endDate.toISOString().substring(0, 10);
 
   var dateRange = utils.datesInRange(startDate, endDate);
 

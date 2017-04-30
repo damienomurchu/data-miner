@@ -88,7 +88,7 @@ exports.issuesInSprint = function(jiraData, sprintName) {
 exports.resolvedDate = function(issue) {
 
   if (!issue.History.Resolution)
-    return undefined;
+    return 'unclosed';
 
   var resolvedDate = issue.History.Resolution.filter(issue => {
     return issue.to === 'Done';
@@ -99,7 +99,7 @@ exports.resolvedDate = function(issue) {
   //return dayDate(resolvedDate);
   if (resolvedDate !== undefined)
     return resolvedDate.substring(0, 10);
-  return undefined;
+  return 'unclosed';
 }
 
 // get resolved dates for an array of issues
@@ -114,20 +114,17 @@ exports.resolvedDates = function (sprintTickets) {
   });
 }
 
+// accepts an array of issues, and returns the number of story points from those issues that
+// have been resolved by the date passed in
 exports.ptsResolved = function (arr, date) {
   date = date.substring(0, 10);
   var pointsResolved = 0;
   arr.forEach(iss => {
-    if (iss.date !== undefined && iss.date === date)
-      pointsResolved = pointsResolved + iss.storypoints;
+    if (iss.resolved !== undefined && iss.resolved !== 'unclosed' && iss.resolved === date)
+      pointsResolved = pointsResolved + iss['Story Points'];
   });
   return pointsResolved;
 }
-
-// retrieves an updated json dump of data from JIRA
-exports.pullFile = function () {
-  // TODO pull updated data set from JIRA via kujira
-};
 
 // checks whether an issue is resolved at a certain date
 exports.resolvedNow = function (iss, date) {
@@ -153,16 +150,15 @@ exports.issueData = function (jiraData) {
     var iss = {};
     iss.id = issue.id;
     iss.jira = issue.key;
-    iss.resolved = resolvedDate(issue);
-    iss.resolution = issue.History.Resolution;
-    iss.sprint = issue.History.Sprint; // TODO get all sprints ticket is in
-    iss.assignee = issue.History.Assignee; // TODO get all assignees of ticket
-    iss.status = issue.History.Status; // TODO get dates for Open, Coding in Prog, PR Sent, Dev Complete, Ready for QA, Done
-    iss.storypoints = issue.History['Story Points']; // TODO dates story points are changed
-    iss.description = issue.History.Description;
-    iss.points = issue['Story Points'];
+    iss.resolution = issue.History.Resolution || [];
+    iss.sprint = issue.History.Sprint || [];
+    iss.assignee = issue.History.Assignee || [];
+    iss.status = issue.History.Status || [];
+    iss.storypoints = issue.History['Story Points'] || [];
+    iss.description = issue.History.Description || [];
+    iss.points = issue['Story Points'] || [];
     return iss;
-  })[5];
+  });
 };
 
 /*

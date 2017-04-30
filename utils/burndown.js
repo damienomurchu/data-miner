@@ -16,8 +16,8 @@ exports.actualBurndown = function (jiraData, sprintName) {
     return iss.storypoints !== 0;
   }).map(tck => {
     dt = {};
-    dt.date = tck.resolved;
-    dt.storypoints = tck.storypoints;
+    dt.resolved = tck.resolved;
+    dt['Story Points'] = tck.storypoints;
     return dt;
   });
 

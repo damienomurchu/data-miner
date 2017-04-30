@@ -1,4 +1,6 @@
 # data-miner #
+[![Build Status](https://travis-ci.org/damienomurchu/data-miner.svg?branch=master)](https://travis-ci.org/damienomurchu/data-miner)
+[![Coverage Status](https://coveralls.io/repos/damienomurchu/data-miner/badge.svg)](https://coveralls.io/r/damienomurchu/data-miner)
 data-miner is a data analysis application written in node.js that is called and run from the commandline. data-miner 
 accepts an input file, allows analysis to be performed on it, and produces an analysed output file and/ or graphed output.
 
