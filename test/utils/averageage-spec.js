@@ -8,15 +8,9 @@ const fixtures = require('./test-fixtures.json');
 
 describe('Average-Age test', function () {
 
-  const sampleWeek = fixtures.sampleWeek;
-
   const start = fixtures.startDate;
   const end = fixtures.endDate;
   const datesInWeek = fixtures.datesInWeek;
-
-  const sprintName = fixtures.sprintName;
-  const sprintStart = fixtures.sprintStart;
-  const sprintEnd = fixtures.sprintEnd;
 
   beforeEach(function () {
     //
@@ -64,7 +58,7 @@ describe('Average-Age test', function () {
   it('each key-value pair in the returned object should have values that are numbers', function () {
     var aa = averageage.averageAge(testData, start, end);
     const values = Object.keys(aa).map(key => aa[key]);
-    values.every(value => {
+    values.forEach(value => {
       expect(typeof value == 'number').to.be.true;
     });
   });

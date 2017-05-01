@@ -7,8 +7,10 @@ exports.createdResolved = function (jiraData, startDate, endDate) {
 
   // guard against missing arguments
   if (!jiraData || !startDate || !endDate) {
-    var reply = {};
-    reply.error = 'You have not passed in valid arguments';
+    var reply = [];
+    var error = {};
+    error.error = 'You have not passed in valid arguments';
+    reply.push(error);
     return reply;
   }
 

@@ -8,15 +8,6 @@ const fixtures = require('./test-fixtures.json');
 
 describe('Velocity test', function () {
 
-  const sampleWeek = fixtures.sampleWeek;
-
-  const start = fixtures.startDate;
-  const end = fixtures.endDate;
-
-  const sprintName = fixtures.sprintName;
-  const sprintStart = fixtures.sprintStart;
-  const sprintEnd = fixtures.sprintEnd;
-
   beforeEach(function () {
     //
   });
@@ -27,7 +18,7 @@ describe('Velocity test', function () {
 
   it('should return error object if no jiraData passed in', function () {
     var vc = velocity.velocity();
-    expect(vc.error).to.exist;
+    expect(vc[0].error).to.exist;
   });
 
   it('should return an array of one or more objects', function () {
@@ -37,7 +28,7 @@ describe('Velocity test', function () {
 
   it('each key-value pair in the returned object should have keys for "sprint", "expected", and "actual"', function () {
     var vc = velocity.velocity(testData);
-    vc.every(obj => {
+    vc.forEach(obj => {
       expect(obj.sprint).to.exist;
       expect(obj.expected).to.exist;
       expect(obj.actual).to.exist;
@@ -46,7 +37,7 @@ describe('Velocity test', function () {
 
   it('each key-value pair in the returned object should have values that are numbers', function () {
     var vc = velocity.velocity(testData);
-    vc.every(obj => {
+    vc.forEach(obj => {
       expect(typeof obj.sprint == 'string' ).to.be.true;
       expect(typeof obj.expected == 'number' ).to.be.true;
       expect(typeof obj.actual == 'number' ).to.be.true;
