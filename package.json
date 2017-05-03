@@ -1,22 +1,20 @@
 {
   "name": "kujira-data-miner",
-  "version": "0.3.0-beta.1",
+  "version": "0.3.0-beta.2",
   "description": "A utility for analysing JIRA input data and producing graphable output data",
   "engines": {
     "node": ">=4.2.4"
   },
   "main": "npm-service-methods.js",
   "bin": {
-    "data-miner": "./dataminer-cli.js",
-    "mocha": "./node_modules/mocha/bin/mocha",
-    "_mocha": "./node_modules/mocha/bin/_mocha"
+    "data-miner": "./dataminer-cli.js"
   },
   "scripts": {
     "start": "node app.js",
-    "test": "mocha --recursive '**/*spec.js'",
-    "test-travis": "./node_modules/istanbul/lib/cli.js cover _mocha --recursive '**/*spec.js'",
-    "test-watch": "mocha --watch --recursive '**/*spec.js'",
-    "test-markdown": "mocha ./test -R markdown > ./spec.md --recursive"
+    "test": "./node_modules/mocha/bin/mocha --recursive '**/*spec.js'",
+    "test-travis": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha --recursive '**/*spec.js'",
+    "test-watch": "./node_modules/mocha/bin/mocha --watch --recursive '**/*spec.js'",
+    "test-markdown": "./node_modules/mocha/bin/mocha ./test -R markdown > ./spec.md --recursive"
   },
   "repository": {
     "type": "git",
@@ -46,14 +44,14 @@
     "serve-favicon": "^2.4.2",
     "underscore": "^1.8.3",
     "winston": "^2.3.1",
-    "yargs": "^7.0.1"
+    "yargs": "^7.0.1",
+    "mocha": "^3.2.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
     "coveralls": "^2.13.1",
     "eslint": "^3.19.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^3.2.0"
+    "istanbul": "^0.4.5"
   }
 }
