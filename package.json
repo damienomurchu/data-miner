@@ -12,6 +12,7 @@
     "_mocha": "./node_modules/mocha/bin/_mocha"
   },
   "scripts": {
+    "start": "node app.js",
     "test": "mocha --recursive '**/*spec.js'",
     "test-travis": "./node_modules/istanbul/lib/cli.js cover _mocha --recursive '**/*spec.js'",
     "test-watch": "mocha --watch --recursive '**/*spec.js'",

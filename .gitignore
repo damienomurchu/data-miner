@@ -16,3 +16,9 @@ coverage
 
 # ignore sonarqube folder
 .scannerwork
+
+# Docker stuff
+.DockerFile.swp
+
+# local log files
+*.log
