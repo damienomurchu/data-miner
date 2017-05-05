@@ -9,18 +9,13 @@ var fixtures = require('./test/utils/test-fixtures.json');
 
 'use strict';
 
-/*gnuplot().plot([{
-  data:[[0,0],[1,1],[2,0]]
-}]);*/
-
 var plot = gnuplot();
-
 
 plot
     .set(
       {
-        xrange: "[0:10]",
-        yrange: "[-5:5]"
+        xrange: '[0:10]',
+        yrange: '[0:10]',
       }
     )
     .plot([
@@ -35,17 +30,3 @@ plot
         data: [[1, 4], [2, 5], [3, 4]],
       },
 ]);
-
-/*
-gnuplot().plot([
-    {
-      title: 'expected',
-      style: 'lines',
-      data: [[1, 1], [2, 2], [3, 3]],
-    },
-    {
-      title: 'actual',
-      style: 'lines',
-      data: [[1, 4], [2, 5], [3, 4]],
-    },
-]);*/
