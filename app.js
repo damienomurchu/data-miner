@@ -5,7 +5,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const hbs = require('handlebars');
-const graphController = require('./api-controller/graphs');
+const dataController = require('./api-controller/data');
 
 var app = express();
 
@@ -31,13 +31,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// graph api handler routes
-app.use('/graphs', graphController);
-
 // sanity check base route
 app.get('/', function (req, res) {
   res.send('Welcome - sanity check passed!');
 });
+
+// graph api handler routes
+app.use('/data', dataController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

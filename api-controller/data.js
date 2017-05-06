@@ -19,13 +19,13 @@ router.post('/issue', upload.array(), function (req, res) {
 // POST /graph/burndown
 // Analyse the received raincatchDump.json & return a json dataset to feed a sprint burndown chart
 router.post('/burndown', upload.array(), function (req, res) {
-  res.json(burndown.burndownReportData(req.body.sprint));
+  res.json(burndown.burndownReportData(req.body.jiradata, req.body.sprint));
 });
 
 // POST /graph/sprintReport
 // Analyse the received raincatchDump.json & return a json dataset to feed a sprint report
 router.post('/sprintReport', upload.array(), function (req, res) {
-  res.json(burndown.burndownReportData(req.body.sprint));
+  res.json(burndown.burndownReportData(req.body.jiradata, req.body.sprint));
 });
 
 // POST /graph/velocity
