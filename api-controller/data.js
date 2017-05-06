@@ -8,7 +8,7 @@ var upload = multer();
 const api = require('../npm-service-methods');
 
 /**
- * POST /graph/burndown
+ * POST  /data/burndown
  *
  * Accepts a file of json JIRA data and sprint name
  * Returns a json dataset to feed a sprint burndown chart
@@ -19,7 +19,7 @@ router.post('/burndown', upload.array(), function (req, res) {
 });
 
 /**
- * POST /graph/sprintReport
+ * POST  /data/sprintReport
  *
  * Accepts a file of json JIRA data and sprint name
  * Returns a json dataset to feed a sprint report
@@ -30,7 +30,7 @@ router.post('/sprintReport', upload.array(), function (req, res) {
 });
 
 /**
- * POST /graph/velocity
+ * POST  /data/velocity
  *
  * Accepts a file of json JIRA data
  * Returns a json dataset to feed a sprint velocity chart
@@ -41,7 +41,7 @@ router.post('/velocity', function (req, res) {
 });
 
 /**
- * POST /graph/averageAge
+ * POST  /data/averageAge
  *
  * Accepts a file of json JIRA data, start and end date
  * Returns a json dataset to feed a sprint average age chart
@@ -52,7 +52,7 @@ router.post('/averageAge', upload.array(), function (req, res) {
 });
 
 /**
- * POST /graph/createdResolved
+ * POST  /data/createdResolved
  *
  * Accepts a file of json JIRA data, start and end date
  * Returns a json dataset to render a created vs resolved chart
@@ -84,7 +84,7 @@ router.post('/issueData', upload.array(), function (req, res) {
 });
 
 /**
- * POST /issuesInSprint
+ * POST /data//issuesInSprint
  *
  * Accepts a file of json JIRA data and a sprint name
  * Returns an array of all issues in that sprint
@@ -95,7 +95,7 @@ router.post('/issuesInSprint', upload.array(), function (req, res) {
 });
 
 /**
- * POST /resolvedDate
+ * POST /data/resolvedDate
  *
  * Accepts a jira issue ticket
  * Returns the date an issue was resolved (if resolved)
@@ -106,7 +106,7 @@ router.post('/resolvedDate', upload.array(), function (req, res) {
 });
 
 /**
- * POST /resolvedDates
+ * POST /data/resolvedDates
  *
  * Accepts a file of json JIRA data
  * Returns an array with the storypoints and resolved dates of all issues
