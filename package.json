@@ -1,6 +1,6 @@
 {
   "name": "kujira-data-miner",
-  "version": "0.3.0-beta.2",
+  "version": "0.3.0-beta.3",
   "description": "A utility for analysing JIRA input data and producing graphable output data",
   "engines": {
     "node": ">=4.2.4"

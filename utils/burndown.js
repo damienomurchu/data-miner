@@ -79,7 +79,7 @@ exports.issueList = function (jiraData, sprintName) {
   }).map(issue => {
     var iss = {};
     iss.issue = issue.key;
-    iss.events = JSON.stringify(issue.History); 
+    iss.events = issue.History;
     return iss;
   });
 }
