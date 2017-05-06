@@ -30,6 +30,7 @@ var actual = bd.actualBurndown;
 var x = [[1, 1], [2, 2], [3, 3]];
 var y = [[1, 4], [2, 5], [3, 4]];
 
+/*// outputting from a file
 gnuplot()
     .set('term png large')
     .set('output "out.png"')
@@ -38,6 +39,25 @@ gnuplot()
     .set(`yrange [0:60]`)
     .set('zeroaxis')
     .plot('"sample.dat" using 1:2 with lines, "sample.dat" using 1:3 with lines')
+    .end();*/
+
+// outputting without a file
+gnuplot()
+    .set('term png large')
+    .set('output "out.png"')
+    .set('title "Burndown Chart, Sprint X"')
+    .set(`xrange [0:6`)
+    .set(`yrange [0:70]`)
+    .set('zeroaxis')
+    .plot(
+        '"-" using 1:2 title "My Plot" with lp \ ' +
+        '1 30 ' +
+        '2 40 ' +
+        '3 35 ' +
+        '4 60 ' +
+        '5 50 ' +
+        'EOF'
+    )
     .end();
 
 
