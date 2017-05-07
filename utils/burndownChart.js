@@ -12,11 +12,17 @@ exports.burndownReportData = function (jiraData, sprintName) {
   }
 
   var dataSet = {};
-  dataSet.report = 'Burndown report';
-  dataSet.sprint = sprintName;
-  dataSet.actualBurndown = burndown.actualBurndown(jiraData, sprintName);
-  dataSet.expectedBurndown = burndown.theoreticalBurndownLine(jiraData, sprintName);
-  dataSet.issueList = burndown.issueList(jiraData, sprintName);
+
+  try {
+    dataSet.report = 'Burndown report';
+    dataSet.sprint = sprintName;
+    dataSet.actualBurndown = burndown.actualBurndown(jiraData, sprintName);
+    dataSet.expectedBurndown = burndown.theoreticalBurndownLine(jiraData, sprintName);
+    dataSet.issueList = burndown.issueList(jiraData, sprintName);
+  } catch (err) {
+    dataSet.error = err.message;
+  }
+
   return dataSet;
 };
 

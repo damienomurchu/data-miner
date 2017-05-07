@@ -62,6 +62,11 @@ describe('Utils-Data.js test', function () {
     expect(sprintDetails.length).to.equal(6);
   });
 
+  it('getSprintInfo handles bad jira data being passed in as an argument', function () {
+    const sprintDetails = data.getSprintInfo([{}]);
+    expect(sprintDetails[0].error).to.exist;
+  });
+
   it('sprintDetails does not return duplicate sprint names', function () {
     const sprintDetails = data.getSprintInfo(testData);
     expect(_.uniq(sprintDetails).length === sprintDetails.length).to.be.true;
@@ -83,22 +88,42 @@ describe('Utils-Data.js test', function () {
     expect(issuesInSprint.length).to.equal(12);
   });
 
+  it('issuesInSprint returns an error object when passed bad jira data as an argument', function () {
+    const issuesInSprint = data.issuesInSprint([{}], sprintName);
+    expect(issuesInSprint[0].error).to.exist;
+  });
+
+  it('issuesInSprint returns an error object when passed no jira data as an argument', function () {
+    const issuesInSprint = data.issuesInSprint(sprintName);
+    expect(issuesInSprint[0].error).to.exist;
+  });
+
   it('resolvedDate returns correct date for a resolved issue', function () {
     var resolvedData = data.resolvedDate(resolvedIssue);
     expect(resolvedData).to.equal('2017-03-28');
   });
 
-  it('resolvedDate returns "unclosed" for a resolved issue', function () {
+  it('resolvedDate returns "unclosed" for an uresolved issue', function () {
     var resolvedData = data.resolvedDate(unresolvedIssue);
     expect(resolvedData).to.equal('unclosed');
   });
 
+  it('resolvedDate returns "no-issue-received" when no issues passed as an argument', function () {
+    var resolvedData = data.resolvedDate();
+    expect(resolvedData).to.equal('no-issue-received');
+  });
+
   it('resolvedDates returns an array of issues with a property "resolved" that has a value', function () {
     var resolvedData = data.resolvedDates(sampleIssues);
-    resolvedData.forEach(issue=> {
+    resolvedData.forEach(issue => {
       expect(issue.resolved).to.exist;
       expect(issue.resolved).to.be.ok;
     });
+  });
+
+  it('resolvedDates returns an array with an object with a key "error" if no jira issue data passed in', function () {
+    var resolvedData = data.resolvedDates();
+    expect(resolvedData[0].error).to.exist;
   });
 
   it('ptsResolved returns correctly the number of issue points that have been resolved by the specified date', function () {
@@ -112,7 +137,7 @@ describe('Utils-Data.js test', function () {
   });
 
   it('test countItems returns correctly the number of times an element is in an array', function () {
-    expect(data.countItems([1,2,3,1,2,2,8,2], 2)).to.equal(4);
+    expect(data.countItems([1, 2, 3, 1, 2, 2, 8, 2], 2)).to.equal(4);
     expect(data.countItems(sampleIssues, sampleIssues[1])).to.equal(1);
   });
 
@@ -129,6 +154,11 @@ describe('Utils-Data.js test', function () {
       expect(iss.description).to.exist;
       expect(iss.points).to.exist;
     });
+  });
+
+  it('issueData handles bad jira data passed in as an argument', function () {
+    var issues = data.issueData([{}]);
+    expect(issues[0].error).to.exist;
   });
 
 });

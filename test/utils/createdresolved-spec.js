@@ -24,6 +24,11 @@ describe('Created-vs-Resolved test', function () {
     expect(cr[0].error).to.exist;
   });
 
+  it('should return error object if bad jiraData passed in', function () {
+    var cr = createdresolved.createdResolved([{}], start, end);
+    expect(cr[0].error).to.exist;
+  });
+
   it('should return error object if no start date passed in', function () {
     var cr = createdresolved.createdResolved(testData, end);
     expect(cr[0].error).to.exist;

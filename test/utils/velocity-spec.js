@@ -21,6 +21,11 @@ describe('Velocity test', function () {
     expect(vc[0].error).to.exist;
   });
 
+  it('should return error object if bad jiraData passed in', function () {
+    var vc = velocity.velocity([{}]);
+    expect(vc[0].error).to.exist;
+  });
+
   it('should return an array of one or more objects', function () {
     var vc = velocity.velocity(testData);
     expect(vc.length).to.be.at.least(1);

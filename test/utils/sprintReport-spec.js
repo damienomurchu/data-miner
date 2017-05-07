@@ -23,6 +23,11 @@ describe('SprintReport test', function () {
     expect(sr.error).to.exist;
   });
 
+  it('should return error object if bad jiraData passed in', function () {
+    var sr = sprintReport.sprintReportData([{}], sprintName);
+    expect(sr.error).to.exist;
+  });
+
   it('should return an error object if no sprint name is passed in', function () {
     var sr = sprintReport.sprintReportData(testData);
     expect(sr.error).to.exist;

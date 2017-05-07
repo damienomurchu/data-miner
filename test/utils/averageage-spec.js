@@ -25,6 +25,11 @@ describe('Average-Age test', function () {
     expect(aa.error).to.exist;
   });
 
+  it('should return error object if bad jiraData passed in', function () {
+    var aa = averageage.averageAge([{}], start, end);
+    expect(aa.error).to.exist;
+  });
+
   it('should return error object if no start date passed in', function () {
     var aa = averageage.averageAge(testData, end);
     expect(aa.error).to.exist;

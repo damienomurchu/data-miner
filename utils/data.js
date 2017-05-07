@@ -5,7 +5,7 @@
 var moment = require('moment');
 
 // takes 2 date strings and returns an array of all the inclusive days
-exports.datesInRange = function(startDate, endDate) {
+exports.datesInRange = function (startDate, endDate) {
   var dateRange = [];
   var st = moment(startDate.substring(0, 10)).add(12, 'hours'); // hack as date 1 hour off
   var nd = moment(endDate.substring(0, 10)).add(12, 'hours'); // hack as date 1 hour off
@@ -13,21 +13,22 @@ exports.datesInRange = function(startDate, endDate) {
     dateRange.push(st.toISOString().substring(0, 10));
     st.add(1, 'day');
   }
+
   return dateRange;
-}
+};
 
 // takes a dateString like '2017-03-01' and returns true if day is a Saturday or Sunday
 exports.isWeekend = function (dateString) {
   var day = new Date(dateString).getDay();
   return (day == 6) || (day == 0); // 6 = Saturday, 0 = Sunday
-}
+};
 
 // takes a starting and ending datestring & returns the number of working days in the range
 exports.workingDaysInRange = function (start, end) {
   return this.datesInRange(start, end).filter(day => {
     return !this.isWeekend(day);
   });
-}
+};
 
 // helper to return array of all the full sprint value strings in a JIRA file
 function getSprintDetails(jiraData) {
@@ -42,16 +43,26 @@ function getSprintDetails(jiraData) {
 }
 
 // returns name, start and end date of sprint
-exports.getSprintInfo = function(jiraData) {
-  var details = getSprintDetails(jiraData);
-  return details.map(detail => {
-    var sprt = {};
-    var spl = detail.split(',');
-    sprt.sprintName = spl[3].substring(5);
-    sprt.startDate = spl[4].substring(10);
-    sprt.endDate = spl[5].substring(8);
-    return sprt;
-  });
+exports.getSprintInfo = function (jiraData) {
+  var sprintInfo = [];
+
+  try {
+    var details = getSprintDetails(jiraData);
+    sprintInfo = details.map(detail => {
+      var sprt = {};
+      var spl = detail.split(',');
+      sprt.sprintName = spl[3].substring(5);
+      sprt.startDate = spl[4].substring(10);
+      sprt.endDate = spl[5].substring(8);
+      return sprt;
+    });
+  } catch (err) {
+    var error = {};
+    error.error = err.message;
+    sprintInfo.push(error);
+  }
+
+  return sprintInfo;
 };
 
 // strips name of sprint from sprint string
@@ -60,7 +71,7 @@ function sprintName(longSprintString) {
 }
 
 //returns a dataset to map the actual burndown for a sprint
-exports.getSprintDates = function(jiraData, sprintName) {
+exports.getSprintDates = function (jiraData, sprintName) {
   // get date range of sprint
   var sprint = this.getSprintInfo(jiraData).filter(dtl => {
     return dtl.sprintName === sprintName;
@@ -68,22 +79,35 @@ exports.getSprintDates = function(jiraData, sprintName) {
   var startDate = sprint.startDate;
   var endDate = sprint.endDate;
   return this.datesInRange(startDate, endDate);
-}
+};
 
 // get all tickets in a sprint
 exports.issuesInSprint = function (jiraData, sprintName) {
-  return jiraData.filter(issue => {
-    // check there is a sprint value
-    if (issue.Sprint === null || issue.Sprint.length < 1)
-      return false;
-    return issue.Sprint.filter(sprint => {
-      return sprint.indexOf(sprintName) > -1;
-    }).length;
-  });
+  var returnedIssues = [];
+
+  try {
+    returnedIssues = jiraData.filter(issue => {
+      // check there is a sprint value
+      if (issue.Sprint === null || issue.Sprint.length < 1)
+        return false;
+      return issue.Sprint.filter(sprint => {
+        return sprint.indexOf(sprintName) > -1;
+      }).length;
+    });
+  } catch (err) {
+    var error = {};
+    error.error = err.message;
+    returnedIssues.push(error);
+  }
+
+  return returnedIssues;
 };
 
 // returns the date an issue was resolved
-exports.resolvedDate = function(issue) {
+exports.resolvedDate = function (issue) {
+
+  if (!issue)
+    return 'no-issue-received';
 
   if (!issue.History.Resolution)
     return 'unclosed';
@@ -101,14 +125,26 @@ exports.resolvedDate = function(issue) {
 
 // get resolved dates for an array of issues
 exports.resolvedDates = function (sprintTickets) {
-  return sprintTickets.map(issue => {
-    var iss = {};
-    iss.id = issue.id;
-    iss.jira = issue.key;
-    iss.storypoints = issue['Story Points'] || 0;
-    iss.resolved = this.resolvedDate(issue);
-    return iss;
-  });
+
+  var returnedData = [];
+
+  try {
+    returnedData = sprintTickets.map(issue => {
+      var iss = {};
+      iss.id = issue.id;
+      iss.jira = issue.key;
+      iss.storypoints = issue['Story Points'] || 0;
+      iss.resolved = this.resolvedDate(issue);
+      return iss;
+    });
+  } catch (err) {
+    var error = {};
+    error.error = err.message;
+    returnedData.push(error);
+  }
+
+  return returnedData;
+
 };
 
 // accepts an array of issues, and returns the number of story points from those issues that
@@ -143,17 +179,27 @@ exports.countItems = function (arr, what) {
 
 // returns pertinent details of a JIRA issue
 exports.issueData = function (jiraData) {
-  return jiraData.map(issue => {
-    var iss = {};
-    iss.id = issue.id;
-    iss.jira = issue.key;
-    iss.resolution = issue.History.Resolution || [];
-    iss.sprint = issue.History.Sprint || [];
-    iss.assignee = issue.History.Assignee || [];
-    iss.status = issue.History.Status || [];
-    iss.storypoints = issue.History['Story Points'] || [];
-    iss.description = issue.History.Description || [];
-    iss.points = issue['Story Points'] || [];
-    return iss;
-  });
+  var returnedIssues = [];
+
+  try {
+    returnedIssues = jiraData.map(issue => {
+      var iss = {};
+      iss.id = issue.id;
+      iss.jira = issue.key;
+      iss.resolution = issue.History.Resolution || [];
+      iss.sprint = issue.History.Sprint || [];
+      iss.assignee = issue.History.Assignee || [];
+      iss.status = issue.History.Status || [];
+      iss.storypoints = issue.History['Story Points'] || [];
+      iss.description = issue.History.Description || [];
+      iss.points = issue['Story Points'] || [];
+      return iss;
+    });
+  } catch (err) {
+    var error = {};
+    error.error = err.message;
+    returnedIssues.push(error);
+  }
+
+  return returnedIssues;
 };
