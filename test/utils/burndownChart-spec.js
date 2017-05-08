@@ -23,6 +23,11 @@ describe('BurndownChart test', function () {
     expect(bd.error).to.exist;
   });
 
+  it('should return error object if bad jiraData passed in', function () {
+    var bd = burndownChart.burndownReportData([{}], sprintName);
+    expect(bd.error).to.exist;
+  });
+
   it('should return an error object if no sprint name is passed in', function () {
     var bd = burndownChart.burndownReportData(testData);
     expect(bd.error).to.exist;
