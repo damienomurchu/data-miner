@@ -1,3 +1,5 @@
+// TODO add status codes to all methods & try catch blocks
+
 'use strict';
 
 const express = require('express');
@@ -80,11 +82,12 @@ router.post('/sprintInfo', upload.array(), function (req, res) {
  * Returns all relevant details on each ticket in a sprint
 */
 router.post('/issueData', upload.array(), function (req, res) {
+  const request = req.body;
   res.json(api.issueData(request.jiradata));
 });
 
 /**
- * POST /data//issuesInSprint
+ * POST /data/issuesInSprint
  *
  * Accepts a file of json JIRA data and a sprint name
  * Returns an array of all issues in that sprint
