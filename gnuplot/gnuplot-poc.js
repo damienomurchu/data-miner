@@ -3,9 +3,9 @@
 // small proof of concept around generating graphs from the data-miner cli through gnuplot
 
 var gnuplot = require('gnuplot');
-var api = require('./npm-service-methods');
-var testData = require('./test/utils/test-jira-data.json');
-var fixtures = require('./test/utils/test-fixtures.json');
+var api = require('./../npm-service-methods');
+var testData = require('./../test/utils/test-jira-data.json');
+var fixtures = require('./../test/utils/test-fixtures.json');
 
 'use strict';
 
@@ -20,8 +20,8 @@ var fixtures = require('./test/utils/test-fixtures.json');
     .end();*/
 
 var bd = api.burndownReportData(testData, fixtures.sprintName);
-console.log(bd.actualBurndown);
-console.log(bd.expectedBurndown);
+//console.log(bd.actualBurndown);
+//console.log(bd.expectedBurndown);
 
 var xmax = bd.actualBurndown.length;
 var ymax = bd.actualBurndown[0].points;
@@ -38,27 +38,37 @@ gnuplot()
     .set(`xrange [0:${xmax}]`)
     .set(`yrange [0:60]`)
     .set('zeroaxis')
-    .plot('"sample.dat" using 1:2 with lines, "sample.dat" using 1:3 with lines')
+    .plot('"line.dat" using 1:2 with lines, "line.dat" using 1:3 with lines')
     .end();*/
 
-// outputting without a file
 gnuplot()
     .set('term png large')
     .set('output "out.png"')
     .set('title "Burndown Chart, Sprint X"')
-    .set(`xrange [0:6`)
+    .set(`xrange [0:${xmax}]`)
+    .set(`yrange [0:60]`)
+    .set('zeroaxis')
+    .plot('"line.csv" using 1:2 with lines, "line.csv" using 1:3 with lines')
+    .end();
+
+/*// outputting without a file
+gnuplot()
+    .set('term png large')
+    .set('output "out.png"')
+    .set('title "Burndown Chart, Sprint X"')
+    .set(`xrange [0:6]`)
     .set(`yrange [0:70]`)
     .set('zeroaxis')
     .plot(
-        '"-" using 1:2 title "My Plot" with lp \ ' +
-        '1 30 ' +
-        '2 40 ' +
-        '3 35 ' +
-        '4 60 ' +
-        '5 50 ' +
-        'EOF'
+        '"-" using 1:2 title "My Plot" with lp \n' +
+        '\t1 30 \n' +
+        '\t2 40 \n' +
+        '\t3 35 \n' +
+        '\t4 60 \n' +
+        '\t5 50 \n' +
+        '\tEOF'
     )
-    .end();
+    .end();*/
 
 
 

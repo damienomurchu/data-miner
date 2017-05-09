@@ -3,9 +3,9 @@
 // small proof of concept around generating graphs from the data-miner cli through gnuplot
 
 var gnuplot = require('gnu-plot');
-var api = require('./npm-service-methods');
-var testData = require('./test/utils/test-jira-data.json');
-var fixtures = require('./test/utils/test-fixtures.json');
+var api = require('./../npm-service-methods');
+var testData = require('./../test/utils/test-jira-data.json');
+var fixtures = require('./../test/utils/test-fixtures.json');
 
 'use strict';
 
