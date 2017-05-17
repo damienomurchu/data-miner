@@ -46,7 +46,7 @@ router.post('/sprintReport', upload.array(), function (req, res) {
 router.post('/velocity', function (req, res) {
   const request = req.body;
   var data = api.velocity(request.jiradata);
-  if (data.error)
+  if (data[0].error)
     res.status(500).json('There was an error processing your request');
   res.status(200).json(data);
 });
@@ -74,7 +74,7 @@ router.post('/averageAge', upload.array(), function (req, res) {
 router.post('/createdResolved', upload.array(), function (req, res) {
   const request = req.body;
   var data = api.createdResolved(request.jiradata, request.start, request.end);
-  if (data.error)
+  if (data[0].error)
     res.status(500).json('There was an error processing your request');
   res.status(200).json(data);
 });
@@ -88,7 +88,7 @@ router.post('/createdResolved', upload.array(), function (req, res) {
 router.post('/sprintInfo', upload.array(), function (req, res) {
   const request = req.body;
   var data = api.sprintInfo(request.jiradata, request.sprint);
-  if (data.error)
+  if (data[0].error)
     res.status(500).json('There was an error processing your request');
   res.status(200).json(data);
 });
@@ -102,7 +102,7 @@ router.post('/sprintInfo', upload.array(), function (req, res) {
 router.post('/issueData', upload.array(), function (req, res) {
   const request = req.body;
   var data = api.issueData(request.jiradata);
-  if (data.error)
+  if (data[0].error)
     res.status(500).json('There was an error processing your request');
   res.status(200).json(data);
 });
@@ -116,7 +116,7 @@ router.post('/issueData', upload.array(), function (req, res) {
 router.post('/issuesInSprint', upload.array(), function (req, res) {
   const request = req.body;
   var data = api.issuesInSprint(request.jiradata, request.sprint);
-  if (data.error)
+  if (data[0].error)
     res.status(500).json('There was an error processing your request');
   res.status(200).json(data);
 });
@@ -130,7 +130,7 @@ router.post('/issuesInSprint', upload.array(), function (req, res) {
 router.post('/resolvedDate', upload.array(), function (req, res) {
   const request = req.body;
   var data = api.resolvedDate(request.issue);
-  if (data.error)
+  if (data === 'no-issue-received')
     res.status(500).json('There was an error processing your request');
   res.status(200).json(data);
 });
@@ -144,7 +144,7 @@ router.post('/resolvedDate', upload.array(), function (req, res) {
 router.post('/resolvedDates', upload.array(), function (req, res) {
   const request = req.body;
   var data = api.resolvedDates(request.jiradata);
-  if (data.error)
+  if (data[0].error)
     res.status(500).json('There was an error processing your request');
   res.status(200).json(data);
 });
