@@ -1,10 +1,7 @@
-// TODO add status codes to all methods & try catch blocks
-
 'use strict';
 
 const express = require('express');
 const router = express.Router();
-const sampleData = require('../sample-data/rc2.json');
 var multer = require('multer');
 var upload = multer();
 const api = require('../npm-service-methods');
@@ -20,7 +17,8 @@ router.post('/burndown', upload.array(), function (req, res) {
   var data = api.burndownReportData(request.jiradata, request.sprint);
   if (data.error)
     res.status(500).json('There was an error processing your request');
-  res.status(200).json(data);
+  else
+    res.status(200).json(data);
 });
 
 /**
@@ -34,7 +32,8 @@ router.post('/sprintReport', upload.array(), function (req, res) {
   var data = api.sprintReport(request.jiradata, request.sprint);
   if (data.error)
     res.status(500).json('There was an error processing your request');
-  res.status(200).json(data);
+  else
+    res.status(200).json(data);
 });
 
 /**
@@ -48,7 +47,8 @@ router.post('/velocity', function (req, res) {
   var data = api.velocity(request.jiradata);
   if (data[0].error)
     res.status(500).json('There was an error processing your request');
-  res.status(200).json(data);
+  else
+    res.status(200).json(data);
 });
 
 /**
@@ -62,7 +62,8 @@ router.post('/averageAge', upload.array(), function (req, res) {
   var data = api.averageAge(request.jiradata, request.start, request.end);
   if (data.error)
     res.status(500).json('There was an error processing your request');
-  res.status(200).json(data);
+  else
+    res.status(200).json(data);
 });
 
 /**
@@ -76,7 +77,8 @@ router.post('/createdResolved', upload.array(), function (req, res) {
   var data = api.createdResolved(request.jiradata, request.start, request.end);
   if (data[0].error)
     res.status(500).json('There was an error processing your request');
-  res.status(200).json(data);
+  else
+    res.status(200).json(data);
 });
 
 /**
@@ -90,7 +92,8 @@ router.post('/sprintInfo', upload.array(), function (req, res) {
   var data = api.sprintInfo(request.jiradata, request.sprint);
   if (data[0].error)
     res.status(500).json('There was an error processing your request');
-  res.status(200).json(data);
+  else
+    res.status(200).json(data);
 });
 
 /**
@@ -104,7 +107,8 @@ router.post('/issueData', upload.array(), function (req, res) {
   var data = api.issueData(request.jiradata);
   if (data[0].error)
     res.status(500).json('There was an error processing your request');
-  res.status(200).json(data);
+  else
+    res.status(200).json(data);
 });
 
 /**
@@ -118,7 +122,8 @@ router.post('/issuesInSprint', upload.array(), function (req, res) {
   var data = api.issuesInSprint(request.jiradata, request.sprint);
   if (data[0].error)
     res.status(500).json('There was an error processing your request');
-  res.status(200).json(data);
+  else
+    res.status(200).json(data);
 });
 
 /**
@@ -132,7 +137,8 @@ router.post('/resolvedDate', upload.array(), function (req, res) {
   var data = api.resolvedDate(request.issue);
   if (data === 'no-issue-received')
     res.status(500).json('There was an error processing your request');
-  res.status(200).json(data);
+  else
+    res.status(200).json(data);
 });
 
 /**
@@ -146,7 +152,8 @@ router.post('/resolvedDates', upload.array(), function (req, res) {
   var data = api.resolvedDates(request.jiradata);
   if (data[0].error)
     res.status(500).json('There was an error processing your request');
-  res.status(200).json(data);
+  else
+    res.status(200).json(data);
 });
 
 module.exports = router;
