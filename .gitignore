@@ -3,3 +3,22 @@ node_modules
 
 # exclude system-generated .idea files
 .idea
+
+# exclude sample-data files
+sample-data
+
+# exclude sonarqube setting files
+.sonar
+.scannerwork
+
+# ignore istanbul coverage folder
+coverage
+
+# ignore sonarqube folder
+.scannerwork
+
+# Docker stuff
+.DockerFile.swp
+
+# local log files
+*.log

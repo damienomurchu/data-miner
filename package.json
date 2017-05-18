@@ -1,13 +1,20 @@
 {
-  "name": "data-miner",
-  "version": "0.0.1",
-  "description": "A utility for analysing input data and producing graphable output data",
-  "main": "app.js",
+  "name": "kujira-data-miner",
+  "version": "0.3.0-beta.5",
+  "description": "A utility for analysing JIRA input data and producing graphable output data",
+  "engines": {
+    "node": ">=4.2.4"
+  },
+  "main": "npm-service-methods.js",
   "bin": {
-    "data-miner": "./app.js"
+    "data-miner": "./dataminer-cli.js"
   },
   "scripts": {
-    "test": "tape tests/**/*.js tests/**.js"
+    "start": "node app.js",
+    "test": "./node_modules/mocha/bin/mocha --recursive '**/*spec.js'",
+    "test-travis": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha --recursive '**/*spec.js'",
+    "test-watch": "./node_modules/mocha/bin/mocha --watch --recursive '**/*spec.js'",
+    "test-markdown": "./node_modules/mocha/bin/mocha ./test -R markdown > ./spec.md --recursive"
   },
   "repository": {
     "type": "git",
@@ -17,11 +24,34 @@
     "data",
     "mining"
   ],
-  "author": "Damien Murphy <damurphy@redhat.com>, Austin Cunningham <aucunning@redhat.com>",
+  "author": "Damien Murphy <damurphy@redhat.com>",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/damienomurchu/data-miner/issues"
   },
   "homepage": "https://github.com/damienomurchu/data-miner#readme",
-  "dependencies": {}
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.7.1",
+    "ejs": "^2.5.1",
+    "express": "^4.14.0",
+    "handlebars": "^4.0.6",
+    "moment": "^2.18.1",
+    "morgan": "^1.8.1",
+    "multer": "^1.3.0",
+    "path": "^0.12.7",
+    "serve-favicon": "^2.4.2",
+    "underscore": "^1.8.3",
+    "winston": "^2.3.1",
+    "yargs": "^7.0.1",
+    "mocha": "^3.2.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "coveralls": "^2.13.1",
+    "eslint": "^3.19.0",
+    "istanbul": "^0.4.5"
+  }
 }
