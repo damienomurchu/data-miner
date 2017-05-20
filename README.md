@@ -1,3 +1,6 @@
+---
+---
+
 # data-miner #
 [![Build Status](https://travis-ci.org/damienomurchu/data-miner.svg?branch=develop)](https://travis-ci.org/damienomurchu/data-miner)
 [![Coverage Status](https://coveralls.io/repos/damienomurchu/data-miner/badge.svg?branch=develop)](https://coveralls.io/github/damienomurchu/data-miner?branch=develop)
@@ -28,13 +31,85 @@ Call in code via:
 * `var burndownDataSet = data-miner.burndownReportData(jiraData, sprintName); // returns a graphable json dataset`
 
 Available methods:
-* `data-miner.burndownReportData(jiraData, sprintName); // returns a json dataset to populate a burndown chart`
-* `data-miner.velocity(jiraData); // returns a json dataset to populate a velocity chart`
-* `data-miner.createdResolved(jiraData, startDate, endDate); // returns a json dataset to populate a creeated-vs-resolved chart`
-* `data-miner.averageAge(jiraData, startDate, endDate); // returns a json dataset to populate an average-age chart `
-* `data-miner.sprintReport(jiraData, sprintName); // returns a json dataset to populate a sprint-report`
-* `data-miner.sprintInfo(jiraData); // returns an array of all sprint details in a jira dump`
-* `data-miner.issueData(jiraData); // returns an array of all relevant info on each ticket in a sprint`
-* `data-miner.issuesInSprint(jiraData, sprintName); // returns an array of all issues in a sprint`
-* `data-miner.resolvedDate(jiraIssue);// returns the date an issue was resolved (if resolved)`
-* `data-miner.resolvedDates(jiraData); // returns an array with the storypoints and resolved dates of all issues`
+* `data-miner.burndownReportData(jiraData, sprintName);`  
+ // returns a json dataset to populate a burndown chart
+* `data-miner.velocity(jiraData);`  
+ // returns a json dataset to populate a velocity chart
+* `data-miner.createdResolved(jiraData, startDate, endDate);`  
+ // returns a json dataset to populate a created-vs-resolved chart
+* `data-miner.averageAge(jiraData, startDate, endDate);`  
+ // returns a json dataset to populate an average-age chart
+* `data-miner.sprintReport(jiraData, sprintName);`  
+ // returns a json dataset to populate a sprint-report
+* `data-miner.sprintInfo(jiraData);`  
+ // returns an array of all sprint details in a jira dump
+* `data-miner.issueData(jiraData);`  
+ // returns an array of all relevant info on each ticket in a sprint
+* `data-miner.issuesInSprint(jiraData, sprintName);`  
+ // returns an array of all issues in a sprint
+* `data-miner.resolvedDate(jiraIssue);`  
+ // returns the date an issue was resolved (if resolved)
+* `data-miner.resolvedDates(jiraData);`  
+ // returns an array with the storypoints and resolved dates of all issues
+
+
+### CLI API command options ###
+
+To view the command options available through the CLI, simply run:
+
+* `node dataminer-cli.js`
+
+
+### RESTful API routes ###
+
+All functionality available through the NPM API is available via RESTful API routes also when data-miner is run as a service. The routes available comprise:
+
+* `POST  /data/burndown`  
+// Accepts a file of json JIRA data and sprint name  
+// Parameters: jiradata, sprint  
+// Returns a json dataset to feed a sprint burndown chart  
+
+* `POST  /data/sprintReport`  
+// Accepts a file of json JIRA data and sprint name  
+// Parameters: jiradata, sprint  
+// Returns a json dataset to feed a sprint report   
+
+* `POST  /data/velocity`  
+// Accepts a file of json JIRA data  
+// Parameters: jiradata  
+// Returns a json dataset to feed a sprint velocity chart  
+
+* `POST  /data/averageAge`  
+// Accepts a file of json JIRA data, start and end date  
+// Parameters: jiradata, start, end  
+// Returns a json dataset to feed a sprint average age chart  
+
+* `POST  /data/createdResolved`  
+// Accepts a file of json JIRA data, start and end date  
+// Parameters: jiradata, start, end  
+// Returns a json dataset to render a created vs resolved chart  
+
+* `POST  /data/sprintInfo`  
+// Accepts a file of json JIRA data and a sprint name  
+// Parameters: jiradata, sprint  
+// Returns all sprint details  
+
+* `POST  /data/issueData`  
+// Accepts a file of json JIRA data  
+// Parameters: jiradata  
+// Returns all relevant details on each ticket in a sprint  
+
+* `POST  /data/issuesInSprint`  
+// Accepts a file of json JIRA data and a sprint name  
+// Parameters: jiradata, sprint  
+// Returns an array of all issues in that sprint  
+
+* `POST  /data/resolvedDate`  
+// Accepts a jira issue ticket  
+// Parameters: issue  
+// Returns the date an issue was resolved (if resolved)  
+
+* `POST  /data/resolvedDates`  
+// Accepts a file of json JIRA data  
+// Parameters: jiradata  
+// Returns an array with the storypoints and resolved dates of all issues  
