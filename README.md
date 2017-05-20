@@ -8,7 +8,18 @@
 
 ## Overview
 
-Data-miner is a data analysis module that accepts raw JIRA data extracted from JIRA with jira-miner and produces refined data sets. Data-miner is also currently used as an integral part of Kujira, for which it was originally designed. Data-miner can also be used in standalone ways which are covered below.
+Data-miner is a data analysis module that accepts raw JIRA data extracted from JIRA with jira-miner and produces refined data sets. 
+It was designed both as a component to handle data analysis needs of Kujira, and also as a standalone component in its own right. 
+
+
+## Kujira
+
+Kujira is a project to provide a GUI-based service to extract, analyse and graph data from JIRA. Data-miner was developed 
+initially to handle the needs of Kujira to analyse JIRA data in JSON form, and produce sets of graphable data. 
+
+An overview of the Kujira project can be seen below
+
+[![KujiraScreenShot](https://s24.postimg.org/5x4ly9wc5/kujira_demo.jpg)](https://youtu.be/oGjQbwPOAoo)
 
 
 ## Functionality
@@ -20,6 +31,11 @@ From an input of raw JIRA data, data-miner will produce datasets in JSON format 
 * average age of issues
 * created vs resolved issues
 
+This functionality is available through a CLI, through code via an NPM package, or through RESTful API routes if using data-miner as a server/ service. 
+An example of this functionality through its CLI can be seen below
+
+[![DataMinerScreenShot](http://i66.tinypic.com/2hx2k35.jpg)](https://vimeo.com/218291119)
+
 In addition to providing graphable data, data-miner provides a number of utility methods for JIRA issues
 
 * `sprintInfo` returns all the sprint details in a raw JIRA file
@@ -28,13 +44,15 @@ In addition to providing graphable data, data-miner provides a number of utility
 * `resolvedDate` returns an issues resolved info
 * `resolvedDates` returns resolved info & storypoints on multiple issues
 
+The above functionality is available via the data-miner NPM package, or by using data-miner as a RESTful service via its API routes.
+
 
 ## Prerequisites
 
 To use data-miner you should have the following
 
-* Node 4.x installed <insert-links-to-installs>
-* npm installed <insert-links-to-installs>
+* Node 4.x installed
+* npm installed
 
 
 ## Installing data-miner
