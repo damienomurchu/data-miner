@@ -32,6 +32,7 @@ const cli = function () {
       .usage('Usage: node $0 -f <file> [<flag> <option>]...')
       .option('f', {
         alias: 'file',
+        default: '~/.jiraminer.db',
         describe: 'specify an input file',
         type: 'string',
       })
@@ -63,16 +64,13 @@ const cli = function () {
         describe: 'specify end date of period',
         type: 'string',
       })
-      .demandOption(['file'], 'Please provide input file.')
-      .example('$0 -f raincatchDump.json.csv -g g-1 -o json -s 01/01/2016 -e 31/12/2016', 'Read in raincatchDump.json from the file raincatchDump.json.csv, and produce json output raincatchDump.json for the graph type g-1, for the date range 01/01/2016 to 31/12/2016')
+      .example('$0 -f raincatchDump.json -g burndown -n "IR302 - Boulder Breaker"', 'Read in raincatchDump.json from the file raincatchDump.json, and produce json output to console for a burndown chart for the sprint name "IR302 - Boulder Breaker"')
       .help()
       .argv;
 
   // check graph type required & render back to user
   switch (argv.graph) {
     case 'burndown':
-      console.log(argv.graph);
-      console.log(argv.name);
       if (!argv.file || !validName(argv.name)) {
         console.log('Invalid filename: <' + argv.file + '> or invalid sprint name: <' + argv.name + '>');
         break;
@@ -83,7 +81,8 @@ const cli = function () {
       try {
         jiraJson = JSON.parse(fs.readFileSync(argv.file).toString());
       } catch (err) {
-        console.log(err.message);
+        console.log('error: ' + err.message);
+        console.log('Have you provided a valid filename, or a valid jiraminerdb file (~/.jiraminer.db) ?');
         break;
       }
 
@@ -93,7 +92,7 @@ const cli = function () {
       // write to file if 'file' chosen as output
       if (argv.output === 'file') {
         var filename = argv.name + '-' + argv.graph + '.json';
-        fs.writeFile(filename, JSON.stringify(burndownData), function (err) {
+        fs.writeFile(filename, JSON.stringify(burndownData, null, 2), function (err) {
           if (err) return console.error(err);
         });
 
@@ -102,7 +101,7 @@ const cli = function () {
       }
 
       // otherwise output to console
-      console.log(burndownData);
+      console.log(JSON.stringify(burndownData, null, 2));
       break;
     case 'velocity':
       if (!argv.file) {
@@ -115,7 +114,8 @@ const cli = function () {
       try {
         jiraJson = JSON.parse(fs.readFileSync(argv.file).toString());
       } catch (err) {
-        console.log(err.message);
+        console.log('error: ' + err.message);
+        console.log('Have you provided a valid filename, or a valid jiraminerdb file (~/.jiraminer.db) ?');
         break;
       }
 
@@ -125,7 +125,7 @@ const cli = function () {
       // write to file if 'file' chosen as output
       if (argv.output === 'file') {
         var filename = argv.graph + '.json';
-        fs.writeFile(filename, JSON.stringify(velocityData), function (err) {
+        fs.writeFile(filename, JSON.stringify(velocityData, null, 2), function (err) {
           if (err) return console.error(err);
         });
 
@@ -134,7 +134,7 @@ const cli = function () {
       }
 
       // otherwise output to console
-      console.log(velocityData);
+      console.log(JSON.stringify(velocityData, null, 2));
       break;
     case 'averageage':
       if (!argv.file || !validDate(argv.start) || !validDate(argv.end)) {
@@ -147,7 +147,8 @@ const cli = function () {
       try {
         jiraJson = JSON.parse(fs.readFileSync(argv.file).toString());
       } catch (err) {
-        console.log(err.message);
+        console.log('error: ' + err.message);
+        console.log('Have you provided a valid filename, or a valid jiraminerdb file (~/.jiraminer.db) ?');
         break;
       }
 
@@ -157,7 +158,7 @@ const cli = function () {
       // write to file if 'file' chosen as output
       if (argv.output === 'file') {
         var filename = argv.graph + '-' + argv.start + '-' + argv.end + '.json';
-        fs.writeFile(filename, JSON.stringify(averageAgeData), function (err) {
+        fs.writeFile(filename, JSON.stringify(averageAgeData, null, 2), function (err) {
           if (err) return console.error(err);
         });
 
@@ -166,7 +167,7 @@ const cli = function () {
       }
 
       // otherwise output to console
-      console.log(averageAgeData);
+      console.log(JSON.stringify(averageAgeData, null, 2));
       break;
     case 'createdresolved':
       if (!argv.file || !validDate(argv.start) || !validDate(argv.end)) {
@@ -179,7 +180,8 @@ const cli = function () {
       try {
         jiraJson = JSON.parse(fs.readFileSync(argv.file).toString());
       } catch (err) {
-        console.log(err.message);
+        console.log('error: ' + err.message);
+        console.log('Have you provided a valid filename, or a valid jiraminerdb file (~/.jiraminer.db) ?');
         break;
       }
 
@@ -189,7 +191,7 @@ const cli = function () {
       // write to file if 'file' chosen as output
       if (argv.output === 'file') {
         var filename = argv.graph + '-' + argv.start + '-' + argv.end + '.json';
-        fs.writeFile(filename, JSON.stringify(createdResolvedData), function (err) {
+        fs.writeFile(filename, JSON.stringify(createdResolvedData, null, 2), function (err) {
           if (err) return console.error(err);
         });
 
@@ -198,11 +200,11 @@ const cli = function () {
       }
 
       // otherwise output to console
-      console.log(createdResolvedData);
+      console.log(JSON.stringify(createdResolvedData, null, 2));
       break;
 
     default:
-      console.log('no option');
+      console.log('Error: No Option Provided');
   }
 };
 
