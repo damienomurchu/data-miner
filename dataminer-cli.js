@@ -91,7 +91,8 @@ const cli = function () {
 
       // write to file if 'file' chosen as output
       if (argv.output === 'file') {
-        var filename = argv.name + '-' + argv.graph + '.json';
+        var sprintName = argv.name.replace(/\s+/g, '').toLowerCase();
+        var filename = argv.graph + '-' + sprintName + '.json';
         fs.writeFile(filename, JSON.stringify(burndownData, null, 2), function (err) {
           if (err) return console.error(err);
         });
