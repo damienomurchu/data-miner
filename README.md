@@ -1,17 +1,17 @@
 ---
 ---
 
-# data-miner #
+# data-miner
 [![Build Status](https://travis-ci.org/damienomurchu/data-miner.svg?branch=develop)](https://travis-ci.org/damienomurchu/data-miner)
 [![Coverage Status](https://coveralls.io/repos/damienomurchu/data-miner/badge.svg?branch=develop)](https://coveralls.io/github/damienomurchu/data-miner?branch=develop)
 
 
-## Overview ##
+## Overview
 
 Data-miner is a data analysis module that accepts raw JIRA data extracted from JIRA with jira-miner and produces refined data sets. Data-miner is also currently used as an integral part of Kujira, for which it was originally designed. Data-miner can also be used in standalone ways which are covered below.
 
 
-## Functionality ##
+## Functionality
 
 From an input of raw JIRA data, data-miner will produce datasets in JSON format that can be then used to produce the following chart types:
 
@@ -20,9 +20,7 @@ From an input of raw JIRA data, data-miner will produce datasets in JSON format 
 * average age of issues
 * created vs resolved issues
 
-<insert-screenshots-of-graphs-here>
-
-In addition to providing graphable data, data-miner provides a number of utility methods for JIRA issues:
+In addition to providing graphable data, data-miner provides a number of utility methods for JIRA issues
 
 * `sprintInfo` returns all the sprint details in a raw JIRA file
 * `issueData` returns the relevant info on tickets in a sprint
@@ -31,26 +29,26 @@ In addition to providing graphable data, data-miner provides a number of utility
 * `resolvedDates` returns resolved info & storypoints on multiple issues
 
 
-## Prerequisites ##
+## Prerequisites
 
-To use data-miner you should have:
+To use data-miner you should have the following
 
 * Node 4.x installed <insert-links-to-installs>
 * npm installed <insert-links-to-installs>
 
 
-## Installing data-miner ##
+## Installing data-miner
 
-There are a number of ways to utilise data-miner. Presently these are:
+There are a number of ways to utilise data-miner. Presently these comprise
 
 * run via the CLI interface
 * call from code as an npm module
 * run as a server/ service with RESTful endpoints
 
 
-### Installing as a CLI ###
+### Installing as a CLI
 
-To install as a CLI tool:
+To install as a CLI tool follow these steps
 
 * clone the repo: `git clone https://github.com/damienomurchu/data-miner.git`
 * run via `node ./dataminer-cli.js`
@@ -58,12 +56,12 @@ To install as a CLI tool:
 The CLI API is outlined [here](#cli-api-command-options). 
 
 
-### Installing as an NPM module ###
+### Installing as an NPM module
 
 * Global install: `npm i -g kujira-data-miner`
 * Local install: `npm i -S kujira-data-miner`
 
-Once installed, data-miner can be used within your code by importing it:  
+Once installed, data-miner can be used within your code by importing it with  
  `const data-miner = require('kujira-data-miner')`
 
 The npm CLI is outlined here [here](#npm-api-methods). 
@@ -71,11 +69,11 @@ The npm CLI is outlined here [here](#npm-api-methods).
 Npm page for data-miner: [here](https://www.npmjs.com/package/kujira-data-miner). 
 
 
-### Installing as a RESTful service ###
+### Installing as a RESTful service
 
 The functionality available within the data-miner CLI and NPM module is also available through a RESTful API. 
 
-To install data-miner as a RESTful service:
+To install data-miner as a RESTful service follow these steps
 
 * clone the repo: `git clone https://github.com/damienomurchu/data-miner.git`
 * `cd data-miner`
@@ -87,11 +85,11 @@ Alternatively, a docker container image is also located [here](https://hub.docke
 The RESTful API is outlined [here](#restful-api-routes). 
 
 
-## API reference ## 
+## API reference
 
-### NPM API methods ###
+### NPM API methods
 
-Available methods:
+Available methods comprise the following
 * `data-miner.burndownReportData(jiraData, sprintName);`  
  // returns a json dataset to populate a burndown chart
 * `data-miner.velocity(jiraData);`  
@@ -114,16 +112,16 @@ Available methods:
  // returns an array with the storypoints and resolved dates of all issues
 
 
-### CLI API command options ###
+### CLI API command options
 
-To view the command options available through the CLI, simply run:
+To view the command options available through the CLI, simply run
 
 * `node dataminer-cli.js`
 
 
-### RESTful API routes ###
+### RESTful API routes
 
-All functionality available through the NPM API is available via RESTful API routes also when data-miner is run as a service. The routes available comprise:
+All functionality available through the NPM API is available via RESTful API routes also when data-miner is run as a service. The routes available comprise
 
 * `POST  /data/burndown`  
 // Accepts a file of json JIRA data and sprint name  
