@@ -10,7 +10,7 @@
     "data-miner": "./dataminer-cli.js"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "node server.js",
     "test": "./node_modules/mocha/bin/mocha --recursive '**/*spec.js'",
     "test-travis": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha --recursive '**/*spec.js'",
     "test-watch": "./node_modules/mocha/bin/mocha --watch --recursive '**/*spec.js'",

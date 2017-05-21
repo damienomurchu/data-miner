@@ -57,7 +57,4 @@ app.use(function(err, req, res) {
   res.render(err);
 });
 
-app.listen(8000);
-console.log('listening on http://localhost:' + '8000');
-
 module.exports = app;
