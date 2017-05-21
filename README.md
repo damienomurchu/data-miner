@@ -168,7 +168,7 @@ All functionality available through the NPM API is available via RESTful API rou
 
 * `POST  /data/sprintInfo`  
 // Accepts a file of json JIRA data and a sprint name  
-// Parameters: jiradata, sprint  
+// Parameters: jiradata  
 // Returns all sprint details  
 
 * `POST  /data/issueData`  
