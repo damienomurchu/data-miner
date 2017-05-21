@@ -16,12 +16,12 @@ describe('API tests', function () {
   const end = fixtures.endDate;
 
   before(function (done) {
-    app.listen(8000);
-    done();
+    //var server = require('../../server');
+    app.listen(8000, done);
   });
 
-  afterEach(function () {
-    app.close();
+  afterEach(function (done) {
+    app.close(done);
   });
 
   it('/data/burndown should return successfully on good data', function () {
@@ -241,11 +241,12 @@ describe('API tests', function () {
     expect(res.statusCode).to.equal(200);
   });
 
-  it('/data/resolvedDates should return unsuccessfully when no jira data passed', function () {
+  it('/data/resolvedDates should return unsuccessfully when no jira data passed', function (done) {
     var obj = {};
     var res = request('POST', baseUrl + '/data/resolvedDates', { json: obj });
 
     expect(res.statusCode).to.equal(500);
+    done();
   });
 
 });
