@@ -97,7 +97,7 @@ To install data-miner as a RESTful service follow these steps
 * `cd data-miner`
 * `node app.js`
 
-Alternatively, a docker container image is also located [here](https://hub.docker.com/r/kujiraproject/kujira/
+Alternatively, a docker container image is also located [here](https://hub.docker.com/r/kujiraproject/data-miner/
 ).
 
 The RESTful API is outlined [here](#restful-api-routes). 
