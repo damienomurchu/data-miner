@@ -1,6 +1,6 @@
 {
   "name": "kujira-data-miner",
-  "version": "0.3.0-beta.6",
+  "version": "0.3.0-beta.7",
   "description": "A utility for analysing JIRA input data and producing graphable output data",
   "engines": {
     "node": ">=4.2.4"
@@ -52,6 +52,7 @@
     "chai-http": "^3.0.0",
     "coveralls": "^2.13.1",
     "eslint": "^3.19.0",
-    "istanbul": "^0.4.5"
+    "istanbul": "^0.4.5",
+    "sync-request": "^4.0.3"
   }
 }
