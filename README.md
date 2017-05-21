@@ -34,7 +34,7 @@ From an input of raw JIRA data, data-miner will produce datasets in JSON format 
 This functionality is available through a CLI, through code via an NPM package, or through RESTful API routes if using data-miner as a server/ service. 
 An example of this functionality through its CLI can be seen below
 
-[![DataMinerScreenShot](http://i66.tinypic.com/2hx2k35.jpg)](https://vimeo.com/218291119)
+[![DataMinerScreenShot](https://s16.postimg.org/fykrdz5vp/Selection_022.jpg)](https://vimeo.com/218291119)
 
 In addition to providing graphable data, data-miner provides a number of utility methods for JIRA issues
 
