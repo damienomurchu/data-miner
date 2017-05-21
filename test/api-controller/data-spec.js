@@ -8,7 +8,9 @@ var request = require('sync-request');
 
 describe('API tests', function () {
 
+  const baseUrl = 'http://localhost:8000';
   const sprint = fixtures.sprintName;
+  const issue = fixtures.sampleIssues[1];
   const start = fixtures.startDate;
   const end = fixtures.endDate;
 
@@ -20,44 +22,92 @@ describe('API tests', function () {
     //
   });
 
-  it.skip('/data/burndown should return successfully', function () {
+  it('/data/burndown should return successfully', function () {
+    var obj = {};
+    obj.jiradata = testData;
+    obj.sprint = sprint;
+    var res = request('POST', baseUrl + '/data/burndown', { json: obj });
 
+    expect(res.statusCode).to.equal(200);
   });
 
-  it.skip('/data/sprintReport should return successfully', function () {
+  it('/data/sprintReport should return successfully', function () {
+    var obj = {};
+    obj.jiradata = testData;
+    obj.sprint = sprint;
+    var res = request('POST', baseUrl + '/data/sprintReport', { json: obj });
 
+    expect(res.statusCode).to.equal(200);
   });
 
-  it.skip('/data/velocity should return successfully', function () {
+  it('/data/velocity should return successfully', function () {
+    var obj = {};
+    obj.jiradata = testData;
+    var res = request('POST', baseUrl + '/data/velocity', { json: obj });
 
+    expect(res.statusCode).to.equal(200);
   });
 
-  it.skip('/data/averageAge should return successfully', function () {
+  it('/data/averageAge should return successfully', function () {
+    var obj = {};
+    obj.jiradata = testData;
+    obj.start = start;
+    obj.end = end;
+    var res = request('POST', baseUrl + '/data/averageAge', { json: obj });
 
+    expect(res.statusCode).to.equal(200);
   });
 
-  it.skip('/data/createdResolved should return successfully', function () {
+  it('/data/createdResolved should return successfully', function () {
+    var obj = {};
+    obj.jiradata = testData;
+    obj.start = start;
+    obj.end = end;
+    var res = request('POST', baseUrl + '/data/createdResolved', { json: obj });
 
+    expect(res.statusCode).to.equal(200);
   });
 
-  it.skip('/data/sprintInfo should return successfully', function () {
+  it('/data/sprintInfo should return successfully', function () {
+    var obj = {};
+    obj.jiradata = testData;
+    obj.sprint = sprint;
+    var res = request('POST', baseUrl + '/data/sprintInfo', { json: obj });
 
+    expect(res.statusCode).to.equal(200);
   });
 
-  it.skip('/data/issueData should return successfully', function () {
+  it('/data/issueData should return successfully', function () {
+    var obj = {};
+    obj.jiradata = testData;
+    var res = request('POST', baseUrl + '/data/issueData', { json: obj });
 
+    expect(res.statusCode).to.equal(200);
   });
 
-  it.skip('/data/issuesInSprint should return successfully', function () {
+  it('/data/issuesInSprint should return successfully', function () {
+    var obj = {};
+    obj.jiradata = testData;
+    obj.sprint = sprint;
+    var res = request('POST', baseUrl + '/data/issuesInSprint', { json: obj });
 
+    expect(res.statusCode).to.equal(200);
   });
 
-  it.skip('/data/resolvedDate should return successfully', function () {
+  it('/data/resolvedDate should return successfully', function () {
+    var obj = {};
+    obj.issue = issue;
+    var res = request('POST', baseUrl + '/data/resolvedDate', { json: obj });
 
+    expect(res.statusCode).to.equal(200);
   });
 
-  it.skip('/data/resolvedDates should return successfully', function () {
+  it('/data/resolvedDates should return successfully', function () {
+    var obj = {};
+    obj.jiradata = testData;
+    var res = request('POST', baseUrl + '/data/resolvedDates', { json: obj });
 
+    expect(res.statusCode).to.equal(200);
   });
 
 });
