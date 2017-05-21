@@ -5,21 +5,23 @@ var expect = chai.expect;
 var testData = require('../utils/test-jira-data.json');
 const fixtures = require('../utils/test-fixtures.json');
 var request = require('sync-request');
+let app = require('../../app');
 
 describe('API tests', function () {
 
-  const baseUrl = 'http://localhost:8000';
+  const baseUrl = 'http://127.0.0.1:8000';
   const sprint = fixtures.sprintName;
   const issue = fixtures.sampleIssues[1];
   const start = fixtures.startDate;
   const end = fixtures.endDate;
 
-  beforeEach(function () {
-    //
+  before(function (done) {
+    //var server = require('../../server');
+    app.listen(8000, done);
   });
 
-  afterEach(function () {
-    //
+  afterEach(function (done) {
+    app.close(done);
   });
 
   it('/data/burndown should return successfully on good data', function () {
@@ -239,11 +241,12 @@ describe('API tests', function () {
     expect(res.statusCode).to.equal(200);
   });
 
-  it('/data/resolvedDates should return unsuccessfully when no jira data passed', function () {
+  it('/data/resolvedDates should return unsuccessfully when no jira data passed', function (done) {
     var obj = {};
     var res = request('POST', baseUrl + '/data/resolvedDates', { json: obj });
 
     expect(res.statusCode).to.equal(500);
+    done();
   });
 
 });
