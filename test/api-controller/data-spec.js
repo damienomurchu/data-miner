@@ -5,21 +5,23 @@ var expect = chai.expect;
 var testData = require('../utils/test-jira-data.json');
 const fixtures = require('../utils/test-fixtures.json');
 var request = require('sync-request');
+let app = require('../../app');
 
 describe('API tests', function () {
 
-  const baseUrl = 'http://localhost:8000';
+  const baseUrl = 'http://127.0.0.1:8000';
   const sprint = fixtures.sprintName;
   const issue = fixtures.sampleIssues[1];
   const start = fixtures.startDate;
   const end = fixtures.endDate;
 
-  beforeEach(function () {
-    //
+  before(function (done) {
+    app.listen(8000);
+    done();
   });
 
   afterEach(function () {
-    //
+    app.close();
   });
 
   it('/data/burndown should return successfully on good data', function () {
