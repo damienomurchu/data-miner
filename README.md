@@ -34,7 +34,7 @@ From an input of raw JIRA data, data-miner will produce datasets in JSON format 
 This functionality is available through a CLI, through code via an NPM package, or through RESTful API routes if using data-miner as a server/ service. 
 An example of this functionality through its CLI can be seen below
 
-[![DataMinerScreenShot](http://i66.tinypic.com/2hx2k35.jpg)](https://vimeo.com/218291119)
+[![DataMinerScreenShot](https://s16.postimg.org/fykrdz5vp/Selection_022.jpg)](https://vimeo.com/218291119)
 
 In addition to providing graphable data, data-miner provides a number of utility methods for JIRA issues
 
@@ -97,7 +97,7 @@ To install data-miner as a RESTful service follow these steps
 * `cd data-miner`
 * `node app.js`
 
-Alternatively, a docker container image is also located [here](https://hub.docker.com/r/kujiraproject/kujira/
+Alternatively, a docker container image is also located [here](https://hub.docker.com/r/kujiraproject/data-miner/
 ).
 
 The RESTful API is outlined [here](#restful-api-routes). 
@@ -168,7 +168,7 @@ All functionality available through the NPM API is available via RESTful API rou
 
 * `POST  /data/sprintInfo`  
 // Accepts a file of json JIRA data and a sprint name  
-// Parameters: jiradata, sprint  
+// Parameters: jiradata  
 // Returns all sprint details  
 
 * `POST  /data/issueData`  
