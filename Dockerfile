@@ -11,7 +11,7 @@ RUN npm install
 # Bundle app source
 COPY . /usr/src/app
 
-EXPOSE 8000
+EXPOSE 8080
 
 CMD [ "npm", "start" ] # make sure start script in package.json
 
