@@ -57,4 +57,4 @@ app.use(function(err, req, res) {
   res.render(err);
 });
 
-module.exports.app = app;
+module.exports = app;
