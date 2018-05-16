@@ -2,8 +2,8 @@
 
 const express = require('express');
 const router = express.Router();
-var multer = require('multer');
-var upload = multer();
+const multer = require('multer');
+const upload = multer();
 const api = require('../npm-service-methods');
 
 /**
@@ -14,7 +14,7 @@ const api = require('../npm-service-methods');
 */
 router.post('/burndown', upload.array(), function (req, res) {
   const request = req.body;
-  var data = api.burndownReportData(request.jiradata, request.sprint);
+  const data = api.burndownReportData(request.jiradata, request.sprint);
   if (data.error)
     res.status(500).json('There was an error processing your request');
   else
@@ -29,7 +29,7 @@ router.post('/burndown', upload.array(), function (req, res) {
 */
 router.post('/sprintReport', upload.array(), function (req, res) {
   const request = req.body;
-  var data = api.sprintReport(request.jiradata, request.sprint);
+  const data = api.sprintReport(request.jiradata, request.sprint);
   if (data.error)
     res.status(500).json('There was an error processing your request');
   else
@@ -44,7 +44,7 @@ router.post('/sprintReport', upload.array(), function (req, res) {
 */
 router.post('/velocity', function (req, res) {
   const request = req.body;
-  var data = api.velocity(request.jiradata);
+  const data = api.velocity(request.jiradata);
   if (data[0].error)
     res.status(500).json('There was an error processing your request');
   else
@@ -59,7 +59,7 @@ router.post('/velocity', function (req, res) {
 */
 router.post('/averageAge', upload.array(), function (req, res) {
   const request = req.body;
-  var data = api.averageAge(request.jiradata, request.start, request.end);
+  const data = api.averageAge(request.jiradata, request.start, request.end);
   if (data.error)
     res.status(500).json('There was an error processing your request');
   else
@@ -74,7 +74,7 @@ router.post('/averageAge', upload.array(), function (req, res) {
 */
 router.post('/createdResolved', upload.array(), function (req, res) {
   const request = req.body;
-  var data = api.createdResolved(request.jiradata, request.start, request.end);
+  const data = api.createdResolved(request.jiradata, request.start, request.end);
   if (data[0].error)
     res.status(500).json('There was an error processing your request');
   else
@@ -89,7 +89,7 @@ router.post('/createdResolved', upload.array(), function (req, res) {
 */
 router.post('/sprintInfo', upload.array(), function (req, res) {
   const request = req.body;
-  var data = api.sprintInfo(request.jiradata, request.sprint);
+  const data = api.sprintInfo(request.jiradata, request.sprint);
   if (data[0].error)
     res.status(500).json('There was an error processing your request');
   else
@@ -104,7 +104,7 @@ router.post('/sprintInfo', upload.array(), function (req, res) {
 */
 router.post('/issueData', upload.array(), function (req, res) {
   const request = req.body;
-  var data = api.issueData(request.jiradata);
+  const data = api.issueData(request.jiradata);
   if (data[0].error)
     res.status(500).json('There was an error processing your request');
   else
@@ -119,7 +119,7 @@ router.post('/issueData', upload.array(), function (req, res) {
 */
 router.post('/issuesInSprint', upload.array(), function (req, res) {
   const request = req.body;
-  var data = api.issuesInSprint(request.jiradata, request.sprint);
+  const data = api.issuesInSprint(request.jiradata, request.sprint);
   if (data[0].error)
     res.status(500).json('There was an error processing your request');
   else
@@ -134,7 +134,7 @@ router.post('/issuesInSprint', upload.array(), function (req, res) {
 */
 router.post('/resolvedDate', upload.array(), function (req, res) {
   const request = req.body;
-  var data = api.resolvedDate(request.issue);
+  const data = api.resolvedDate(request.issue);
   if (data === 'no-issue-received')
     res.status(500).json('There was an error processing your request');
   else
@@ -149,7 +149,7 @@ router.post('/resolvedDate', upload.array(), function (req, res) {
 */
 router.post('/resolvedDates', upload.array(), function (req, res) {
   const request = req.body;
-  var data = api.resolvedDates(request.jiradata);
+  const data = api.resolvedDates(request.jiradata);
   if (data[0].error)
     res.status(500).json('There was an error processing your request');
   else
