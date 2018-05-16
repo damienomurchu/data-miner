@@ -3,11 +3,11 @@ const utils = require('./data.js');
 // returns a data set to populate a velocity chart
 exports.velocity = function (jiraData) {
 
-  var ticketsbySprint = [];
+  let ticketsbySprint = [];
 
   // guard against missing arguments
   if (!jiraData) {
-    var error = {};
+    let error = {};
     error.error = 'You have not passed in any jira data';
     ticketsbySprint.push(error);
     return ticketsbySprint;
@@ -15,25 +15,25 @@ exports.velocity = function (jiraData) {
 
   try {
 
-    var sprintInfo = utils.getSprintInfo(jiraData);
+    const sprintInfo = utils.getSprintInfo(jiraData);
 
     // get all sprints
-    var sprintNames = sprintInfo.map(dtls => {
+    const sprintNames = sprintInfo.map(dtls => {
       return dtls.sprintName;
     });
 
     sprintNames.forEach(sprintName => {
-      var sprintIssues = utils.issuesInSprint(jiraData, sprintName);
+      const sprintIssues = utils.issuesInSprint(jiraData, sprintName);
 
       // get sprint dates
-      var sprint = sprintInfo.filter(dtl => {
+      const sprint = sprintInfo.filter(dtl => {
         return dtl.sprintName === sprintName;
       })[0];
-      var sprintStart = sprint.startDate;
-      var sprintEnd = sprint.endDate;
+      const sprintStart = sprint.startDate;
+      const sprintEnd = sprint.endDate;
 
       // check if tickets resolved within the sprint & return total expected and completed points
-      var issues = {};
+      let issues = {};
       issues.sprint = sprintName;
       issues.expected = sprintIssues.map(ticket => {
         return ticket['Story Points'] || 0; // if story points are null
@@ -42,7 +42,7 @@ exports.velocity = function (jiraData) {
       });
       issues.actual = sprintIssues.map(ticket => {
         // check if resolved, if so return points, otherwise no
-        var dateResolved = utils.resolvedDate(ticket);
+        const dateResolved = utils.resolvedDate(ticket);
         if ((dateResolved) && (dateResolved >= sprintStart) && (dateResolved <= sprintEnd))
           return ticket['Story Points'] || 0;
         return 0;
@@ -58,7 +58,7 @@ exports.velocity = function (jiraData) {
       return a.sprint > b.sprint;
     });
   } catch (err) {
-    var error = {};
+    let error = {};
     error.error = err.message;
     ticketsbySprint.push(error);
     return ticketsbySprint;
