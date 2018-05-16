@@ -6,12 +6,12 @@ exports.burndownReportData = function (jiraData, sprintName) {
 
   // guard against missing arguments
   if (!jiraData || !sprintName) {
-    var reply = {};
+    const reply = {};
     reply.error = 'You have not passed in valid arguments';
     return reply;
   }
 
-  var dataSet = {};
+  const dataSet = {};
 
   try {
     dataSet.report = 'Burndown report';
