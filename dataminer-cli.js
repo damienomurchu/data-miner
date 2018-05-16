@@ -4,7 +4,7 @@
 
 const yargs = require('yargs');
 const api = require('./npm-service-methods');
-var fs = require('fs');
+const fs = require('fs');
 
 // checks if sprint name is a valid argument
 function validName(sprintname) {
@@ -21,14 +21,14 @@ function validDate(date) {
     return false;
 
   // check format & return true if date string matches YYYY-MM-DD format
-  var regex = /^[0-9]{4}[\-][0-9]{2}[\-][0-9]{2}$/g;
-  var str = date.substring(0, 10);
+  const regex = /^[0-9]{4}[\-][0-9]{2}[\-][0-9]{2}$/g;
+  const str = date.substring(0, 10);
   return regex.test(str);
 }
 
 // define CLI input options
 const cli = function () {
-  var argv = yargs
+  const argv = yargs
       .usage('Usage: node $0 -f <file> [<flag> <option>]...')
       .option('f', {
         alias: 'file',
@@ -77,7 +77,7 @@ const cli = function () {
       }
       
       // read file & convert to json
-      var jiraJson;
+      const jiraJson;
       try {
         jiraJson = JSON.parse(fs.readFileSync(argv.file).toString());
       } catch (err) {
@@ -87,12 +87,12 @@ const cli = function () {
       }
 
       // generate burndown chart data
-      var burndownData = api.burndownReportData(jiraJson, argv.name);
+      const burndownData = api.burndownReportData(jiraJson, argv.name);
 
       // write to file if 'file' chosen as output
       if (argv.output === 'file') {
-        var sprintName = argv.name.replace(/\s+/g, '').toLowerCase();
-        var filename = argv.graph + '-' + sprintName + '.json';
+        const sprintName = argv.name.replace(/\s+/g, '').toLowerCase();
+        const filename = argv.graph + '-' + sprintName + '.json';
         fs.writeFile(filename, JSON.stringify(burndownData, null, 2), function (err) {
           if (err) return console.error(err);
         });
@@ -111,7 +111,7 @@ const cli = function () {
       }
 
       // read file & convert to json
-      var jiraJson;
+      const jiraJson;
       try {
         jiraJson = JSON.parse(fs.readFileSync(argv.file).toString());
       } catch (err) {
@@ -121,11 +121,11 @@ const cli = function () {
       }
 
       // generate velocity chart data
-      var velocityData = api.velocity(jiraJson);
+      const velocityData = api.velocity(jiraJson);
 
       // write to file if 'file' chosen as output
       if (argv.output === 'file') {
-        var filename = argv.graph + '.json';
+        const filename = argv.graph + '.json';
         fs.writeFile(filename, JSON.stringify(velocityData, null, 2), function (err) {
           if (err) return console.error(err);
         });
@@ -144,7 +144,7 @@ const cli = function () {
       }
 
       // read file & convert to json
-      var jiraJson;
+      const jiraJson;
       try {
         jiraJson = JSON.parse(fs.readFileSync(argv.file).toString());
       } catch (err) {
@@ -154,11 +154,11 @@ const cli = function () {
       }
 
       // generate velocity chart data
-      var averageAgeData = api.averageAge(jiraJson, argv.start, argv.end);
+      const averageAgeData = api.averageAge(jiraJson, argv.start, argv.end);
 
       // write to file if 'file' chosen as output
       if (argv.output === 'file') {
-        var filename = argv.graph + '-' + argv.start + '-' + argv.end + '.json';
+        const filename = argv.graph + '-' + argv.start + '-' + argv.end + '.json';
         fs.writeFile(filename, JSON.stringify(averageAgeData, null, 2), function (err) {
           if (err) return console.error(err);
         });
@@ -177,7 +177,7 @@ const cli = function () {
       }
 
       // read file & convert to json
-      var jiraJson;
+      const jiraJson;
       try {
         jiraJson = JSON.parse(fs.readFileSync(argv.file).toString());
       } catch (err) {
@@ -187,11 +187,11 @@ const cli = function () {
       }
 
       // generate velocity chart data
-      var createdResolvedData = api.createdResolved(jiraJson, argv.start, argv.end);
+      const createdResolvedData = api.createdResolved(jiraJson, argv.start, argv.end);
 
       // write to file if 'file' chosen as output
       if (argv.output === 'file') {
-        var filename = argv.graph + '-' + argv.start + '-' + argv.end + '.json';
+        const filename = argv.graph + '-' + argv.start + '-' + argv.end + '.json';
         fs.writeFile(filename, JSON.stringify(createdResolvedData, null, 2), function (err) {
           if (err) return console.error(err);
         });
