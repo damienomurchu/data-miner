@@ -2,8 +2,8 @@
 
 const data = require('../../utils/data');
 const chai = require('chai');
-var expect = chai.expect;
-var testData = require('./test-jira-data.json');
+const expect = chai.expect;
+const testData = require('./test-jira-data.json');
 const fixtures = require('./test-fixtures.json');
 const _ = require('underscore');
 
@@ -99,22 +99,22 @@ describe('Utils-Data.js test', function () {
   });
 
   it('resolvedDate returns correct date for a resolved issue', function () {
-    var resolvedData = data.resolvedDate(resolvedIssue);
+    const resolvedData = data.resolvedDate(resolvedIssue);
     expect(resolvedData).to.equal('2017-03-28');
   });
 
   it('resolvedDate returns "unclosed" for an uresolved issue', function () {
-    var resolvedData = data.resolvedDate(unresolvedIssue);
+    const resolvedData = data.resolvedDate(unresolvedIssue);
     expect(resolvedData).to.equal('unclosed');
   });
 
   it('resolvedDate returns "no-issue-received" when no issues passed as an argument', function () {
-    var resolvedData = data.resolvedDate();
+    const resolvedData = data.resolvedDate();
     expect(resolvedData).to.equal('no-issue-received');
   });
 
   it('resolvedDates returns an array of issues with a property "resolved" that has a value', function () {
-    var resolvedData = data.resolvedDates(sampleIssues);
+    const resolvedData = data.resolvedDates(sampleIssues);
     resolvedData.forEach(issue => {
       expect(issue.resolved).to.exist;
       expect(issue.resolved).to.be.ok;
@@ -122,12 +122,12 @@ describe('Utils-Data.js test', function () {
   });
 
   it('resolvedDates returns an array with an object with a key "error" if no jira issue data passed in', function () {
-    var resolvedData = data.resolvedDates();
+    const resolvedData = data.resolvedDates();
     expect(resolvedData[0].error).to.exist;
   });
 
   it('ptsResolved returns correctly the number of issue points that have been resolved by the specified date', function () {
-    var ptsResolvedBy = data.ptsResolved(sampleIssues, '2017-03-28');
+    const ptsResolvedBy = data.ptsResolved(sampleIssues, '2017-03-28');
     expect(ptsResolvedBy).to.equal(5);
   });
 
@@ -142,7 +142,7 @@ describe('Utils-Data.js test', function () {
   });
 
   it('issueData returns an object with the expected keys', function () {
-    var issues = data.issueData(testData);
+    const issues = data.issueData(testData);
     issues.forEach(iss => {
       expect(iss.id).to.exist;
       expect(iss.jira).to.exist;
@@ -157,7 +157,7 @@ describe('Utils-Data.js test', function () {
   });
 
   it('issueData handles bad jira data passed in as an argument', function () {
-    var issues = data.issueData([{}]);
+    let issues = data.issueData([{}]);
     expect(issues[0].error).to.exist;
   });
 
