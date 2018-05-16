@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const hbs = require('handlebars');
 const dataController = require('./api-controller/data');
 
-var app = express();
+const app = express();
 
 // serves any requests for resources/ images in the url www.x.com/123.jpg from the public directory
 app.use(express.static('public'));
@@ -41,7 +41,7 @@ app.use('/data', dataController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
