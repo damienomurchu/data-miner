@@ -77,7 +77,7 @@ const cli = function () {
       }
       
       // read file & convert to json
-      const jiraJson;
+      let jiraJson;
       try {
         jiraJson = JSON.parse(fs.readFileSync(argv.file).toString());
       } catch (err) {
@@ -111,7 +111,7 @@ const cli = function () {
       }
 
       // read file & convert to json
-      const jiraJson;
+      let jiraJson;
       try {
         jiraJson = JSON.parse(fs.readFileSync(argv.file).toString());
       } catch (err) {
@@ -144,7 +144,7 @@ const cli = function () {
       }
 
       // read file & convert to json
-      const jiraJson;
+      let jiraJson;
       try {
         jiraJson = JSON.parse(fs.readFileSync(argv.file).toString());
       } catch (err) {
@@ -177,7 +177,7 @@ const cli = function () {
       }
 
       // read file & convert to json
-      const jiraJson;
+      let jiraJson;
       try {
         jiraJson = JSON.parse(fs.readFileSync(argv.file).toString());
       } catch (err) {
