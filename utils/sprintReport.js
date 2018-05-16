@@ -6,12 +6,12 @@ exports.sprintReportData = function(jiraData, sprintName) {
 
   // guard against missing arguments
   if (!jiraData || !sprintName) {
-    var reply = {};
+    let reply = {};
     reply.error = 'You have not passed in valid arguments';
     return reply;
   }
 
-  var dataSet = {};
+  let dataSet = {};
 
   try {
     dataSet.report = 'Sprint report';
