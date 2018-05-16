@@ -2,13 +2,13 @@
 
 'use strict'
 
-var moment = require('moment');
+const moment = require('moment');
 
 // takes 2 date strings and returns an array of all the inclusive days
 exports.datesInRange = function (startDate, endDate) {
-  var dateRange = [];
-  var st = moment(startDate.substring(0, 10)).add(12, 'hours'); // hack as date 1 hour off
-  var nd = moment(endDate.substring(0, 10)).add(12, 'hours'); // hack as date 1 hour off
+  let dateRange = [];
+  const st = moment(startDate.substring(0, 10)).add(12, 'hours'); // hack as date 1 hour off
+  const nd = moment(endDate.substring(0, 10)).add(12, 'hours'); // hack as date 1 hour off
   while (st <= nd) {
     dateRange.push(st.toISOString().substring(0, 10));
     st.add(1, 'day');
@@ -19,7 +19,7 @@ exports.datesInRange = function (startDate, endDate) {
 
 // takes a dateString like '2017-03-01' and returns true if day is a Saturday or Sunday
 exports.isWeekend = function (dateString) {
-  var day = new Date(dateString).getDay();
+  const day = new Date(dateString).getDay();
   return (day == 6) || (day == 0); // 6 = Saturday, 0 = Sunday
 };
 
@@ -32,32 +32,32 @@ exports.workingDaysInRange = function (start, end) {
 
 // helper to return array of all the full sprint value strings in a JIRA file
 function getSprintDetails(jiraData) {
-  var unf = jiraData.map(issue => {
+  const unf = jiraData.map(issue => {
     return issue.Sprint;
   }).filter(sprint => {
     return (sprint.length > 0);
   });
-  var fil = [].concat.apply([], unf); // flatten previous array of arrays
+  const fil = [].concat.apply([], unf); // flatten previous array of arrays
 
   return fil.filter((x, i, a) => a.indexOf(x) == i); // return only unique sprint values
 }
 
 // returns name, start and end date of sprint
 exports.getSprintInfo = function (jiraData) {
-  var sprintInfo = [];
+  let sprintInfo = [];
 
   try {
-    var details = getSprintDetails(jiraData);
+    const details = getSprintDetails(jiraData);
     sprintInfo = details.map(detail => {
-      var sprt = {};
-      var spl = detail.split(',');
+      let sprt = {};
+      const spl = detail.split(',');
       sprt.sprintName = spl[3].substring(5);
       sprt.startDate = spl[4].substring(10);
       sprt.endDate = spl[5].substring(8);
       return sprt;
     });
   } catch (err) {
-    var error = {};
+    let error = {};
     error.error = err.message;
     sprintInfo.push(error);
   }
@@ -73,17 +73,17 @@ function sprintName(longSprintString) {
 //returns a dataset to map the actual burndown for a sprint
 exports.getSprintDates = function (jiraData, sprintName) {
   // get date range of sprint
-  var sprint = this.getSprintInfo(jiraData).filter(dtl => {
+  const sprint = this.getSprintInfo(jiraData).filter(dtl => {
     return dtl.sprintName === sprintName;
   })[0];
-  var startDate = sprint.startDate;
-  var endDate = sprint.endDate;
+  const startDate = sprint.startDate;
+  const endDate = sprint.endDate;
   return this.datesInRange(startDate, endDate);
 };
 
 // get all tickets in a sprint
 exports.issuesInSprint = function (jiraData, sprintName) {
-  var returnedIssues = [];
+  let returnedIssues = [];
 
   try {
     returnedIssues = jiraData.filter(issue => {
@@ -95,7 +95,7 @@ exports.issuesInSprint = function (jiraData, sprintName) {
       }).length;
     });
   } catch (err) {
-    var error = {};
+    let error = {};
     error.error = err.message;
     returnedIssues.push(error);
   }
