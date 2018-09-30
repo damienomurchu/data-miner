@@ -17,12 +17,16 @@ describe('API tests', function () {
 
   before(function () {
     //var server = require('../../server');
-    app.listen(8000);
+    app.app.listen(8000, function(done) {
+      done();
+    });
     //console.log(app, null, 2);
   });
 
   after(function () {
-    app.close();
+    app.app.close(function(done) {
+      done();
+    });
     //console.log(app, null, 2);
   });
 
