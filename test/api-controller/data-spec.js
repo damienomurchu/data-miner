@@ -15,81 +15,91 @@ describe('API tests', function () {
   const start = fixtures.startDate;
   const end = fixtures.endDate;
 
-  before(function (done) {
+  before(function () {
     //var server = require('../../server');
-    app.listen(8000, done);
+    app.listen(8000);
+    //console.log(app, null, 2);
   });
 
-  afterEach(function (done) {
-    app.close(done);
+  after(function () {
+    app.close();
+    //console.log(app, null, 2);
   });
 
-  it('/data/burndown should return successfully on good data', function () {
+  it('/data/burndown should return successfully on good data', function (done) {
     var obj = {};
     obj.jiradata = testData;
     obj.sprint = sprint;
     var res = request('POST', baseUrl + '/data/burndown', { json: obj });
 
     expect(res.statusCode).to.equal(200);
+    done();
   });
 
-  it('/data/burndown should return unsuccessfully when no jiradata passed', function () {
+  it('/data/burndown should return unsuccessfully when no jiradata passed', function (done) {
     var obj = {};
     obj.sprint = sprint;
     var res = request('POST', baseUrl + '/data/burndown', { json: obj });
 
     expect(res.statusCode).to.equal(500);
+    done();
   });
 
-  it('/data/burndown should return unsuccessfully when no sprint name passed', function () {
+  it('/data/burndown should return unsuccessfully when no sprint name passed', function (done) {
     var obj = {};
     obj.jiradata = testData;
     var res = request('POST', baseUrl + '/data/burndown', { json: obj });
 
     expect(res.statusCode).to.equal(500);
+    done();
   });
 
-  it('/data/sprintReport should return successfully on good data', function () {
+  it('/data/sprintReport should return successfully on good data', function (done) {
     var obj = {};
     obj.jiradata = testData;
     obj.sprint = sprint;
     var res = request('POST', baseUrl + '/data/sprintReport', { json: obj });
 
     expect(res.statusCode).to.equal(200);
+    done();
   });
 
-  it('/data/sprintReport should return successfully when no jiradata passed', function () {
+  it('/data/sprintReport should return successfully when no jiradata passed', function (done) {
     var obj = {};
     obj.sprint = sprint;
     var res = request('POST', baseUrl + '/data/sprintReport', { json: obj });
 
     expect(res.statusCode).to.equal(500);
+    done();
   });
 
-  it('/data/sprintReport should return unsuccessfully when no sprint name passed', function () {
+  it('/data/sprintReport should return unsuccessfully when no sprint name passed', function (done) {
     var obj = {};
     obj.jiradata = testData;
     var res = request('POST', baseUrl + '/data/sprintReport', { json: obj });
 
     expect(res.statusCode).to.equal(500);
+    done();
   });
 
-  it('/data/velocity should return successfully on good data', function () {
+  it('/data/velocity should return successfully on good data', function (done) {
     var obj = {};
     obj.jiradata = testData;
     var res = request('POST', baseUrl + '/data/velocity', { json: obj });
 
     expect(res.statusCode).to.equal(200);
+    done();
   });
 
-  it('/data/velocity should return unsuccessfully when no jira data passed', function () {
+  it('/data/velocity should return unsuccessfully when no jira data passed', function (done) {
     var obj = {};
     var res = request('POST', baseUrl + '/data/velocity', { json: obj });
 
     expect(res.statusCode).to.equal(500);
+    done();
   });
 
-  it('/data/averageAge should return successfully on good data', function () {
+  it('/data/averageAge should return successfully on good data', function (done) {
     var obj = {};
     obj.jiradata = testData;
     obj.start = start;
@@ -97,36 +107,40 @@ describe('API tests', function () {
     var res = request('POST', baseUrl + '/data/averageAge', { json: obj });
 
     expect(res.statusCode).to.equal(200);
+    done();
   });
 
-  it('/data/averageAge should return unsuccessfully when no jiradata passed', function () {
+  it('/data/averageAge should return unsuccessfully when no jiradata passed', function (done) {
     var obj = {};
     obj.start = start;
     obj.end = end;
     var res = request('POST', baseUrl + '/data/averageAge', { json: obj });
 
     expect(res.statusCode).to.equal(500);
+    done();
   });
 
-  it('/data/averageAge should return unsuccessfully when no start date passed', function () {
+  it('/data/averageAge should return unsuccessfully when no start date passed', function (done) {
     var obj = {};
     obj.jiradata = testData;
     obj.end = end;
     var res = request('POST', baseUrl + '/data/averageAge', { json: obj });
 
     expect(res.statusCode).to.equal(500);
+    done();
   });
 
-  it('/data/averageAge should return unsuccessfully when no end date passed', function () {
+  it('/data/averageAge should return unsuccessfully when no end date passed', function (done) {
     var obj = {};
     obj.jiradata = testData;
     obj.start = start;
     var res = request('POST', baseUrl + '/data/averageAge', { json: obj });
 
     expect(res.statusCode).to.equal(500);
+    done();
   });
 
-  it('/data/createdResolved should return successfully on good data', function () {
+  it('/data/createdResolved should return successfully on good data', function (done) {
     var obj = {};
     obj.jiradata = testData;
     obj.start = start;
@@ -134,111 +148,125 @@ describe('API tests', function () {
     var res = request('POST', baseUrl + '/data/createdResolved', { json: obj });
 
     expect(res.statusCode).to.equal(200);
+    done();
   });
 
-  it('/data/createdResolved should return unsuccessfully when no jiradata passed', function () {
+  it('/data/createdResolved should return unsuccessfully when no jiradata passed', function (done) {
     var obj = {};
     obj.start = start;
     obj.end = end;
     var res = request('POST', baseUrl + '/data/createdResolved', { json: obj });
 
     expect(res.statusCode).to.equal(500);
+    done();
   });
 
-  it('/data/createdResolved should return unsuccessfully when no start date passed', function () {
+  it('/data/createdResolved should return unsuccessfully when no start date passed', function (done) {
     var obj = {};
     obj.jiradata = testData;
     obj.end = end;
     var res = request('POST', baseUrl + '/data/createdResolved', { json: obj });
 
     expect(res.statusCode).to.equal(500);
+    done();
   });
 
-  it('/data/createdResolved should return unsuccessfully when no end date passed', function () {
+  it('/data/createdResolved should return unsuccessfully when no end date passed', function (done) {
     var obj = {};
     obj.jiradata = testData;
     obj.start = start;
     var res = request('POST', baseUrl + '/data/createdResolved', { json: obj });
 
     expect(res.statusCode).to.equal(500);
+    done();
   });
 
-  it('/data/sprintInfo should return successfully on good data', function () {
+  it('/data/sprintInfo should return successfully on good data', function (done) {
     var obj = {};
     obj.jiradata = testData;
     var res = request('POST', baseUrl + '/data/sprintInfo', { json: obj });
 
     expect(res.statusCode).to.equal(200);
+    done();
   });
 
-  it('/data/sprintInfo should return unsuccessfully when no jiradata passed', function () {
+  it('/data/sprintInfo should return unsuccessfully when no jiradata passed', function (done) {
     var obj = {};
     var res = request('POST', baseUrl + '/data/sprintInfo', { json: obj });
 
     expect(res.statusCode).to.equal(500);
+    done();
   });
 
-  it('/data/issueData should return successfully on good data', function () {
+  it('/data/issueData should return successfully on good data', function (done) {
     var obj = {};
     obj.jiradata = testData;
     var res = request('POST', baseUrl + '/data/issueData', { json: obj });
 
     expect(res.statusCode).to.equal(200);
+    done();
   });
 
-  it('/data/issueData should return unsuccessfully when no jiradata passed', function () {
+  it('/data/issueData should return unsuccessfully when no jiradata passed', function (done) {
     var obj = {};
     var res = request('POST', baseUrl + '/data/issueData', { json: obj });
 
     expect(res.statusCode).to.equal(500);
+    done();
   });
 
-  it('/data/issuesInSprint should return successfully on good data', function () {
+  it('/data/issuesInSprint should return successfully on good data', function (done) {
     var obj = {};
     obj.jiradata = testData;
     obj.sprint = sprint;
     var res = request('POST', baseUrl + '/data/issuesInSprint', { json: obj });
 
     expect(res.statusCode).to.equal(200);
+    done();
   });
 
-  it('/data/issuesInSprint should return unsuccessfully when no jiradata passed', function () {
+  it('/data/issuesInSprint should return unsuccessfully when no jiradata passed', function (done) {
     var obj = {};
     obj.sprint = sprint;
     var res = request('POST', baseUrl + '/data/issuesInSprint', { json: obj });
 
     expect(res.statusCode).to.equal(500);
+    done();
   });
 
-  it('/data/issuesInSprint should return unsuccessfully when no sprint name passed', function () {
+  it('/data/issuesInSprint should return unsuccessfully when no sprint name passed', function (done) {
     var obj = {};
     obj.jiradata = testData;
     var res = request('POST', baseUrl + '/data/issuesInSprint', { json: obj });
 
     expect(res.statusCode).to.equal(500);
+    done();
   });
 
-  it('/data/resolvedDate should return successfully on good data', function () {
+  it('/data/resolvedDate should return successfully on good data', function (done) {
     var obj = {};
     obj.issue = issue;
     var res = request('POST', baseUrl + '/data/resolvedDate', { json: obj });
 
     expect(res.statusCode).to.equal(200);
+    done();
   });
 
-  it('/data/resolvedDate should return unsuccessfully when no issue data passed', function () {
+  it('/data/resolvedDate should return unsuccessfully when no issue data passed', function (done) {
     var obj = {};
     var res = request('POST', baseUrl + '/data/resolvedDate', { json: obj });
 
     expect(res.statusCode).to.equal(500);
+    done();
   });
 
-  it('/data/resolvedDates should return successfully on good data', function () {
+  it('/data/resolvedDates should return successfully on good data', function (done) {
     var obj = {};
     obj.jiradata = testData;
     var res = request('POST', baseUrl + '/data/resolvedDates', { json: obj });
 
     expect(res.statusCode).to.equal(200);
+    done();
   });
 
   it('/data/resolvedDates should return unsuccessfully when no jira data passed', function (done) {
