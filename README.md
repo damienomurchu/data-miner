@@ -1,5 +1,5 @@
 ---
-# No longer actively maintained
+# Archived - No longer maintained.
 ---
 
 # data-miner
